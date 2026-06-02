@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : Creature
 {
@@ -129,6 +131,18 @@ public class PlayerController : Creature
         Quaternion targetRotation = Quaternion.LookRotation(Quaternion.Euler(new Vector3(0, rotation * 90f, 0)) * Vector3.forward);
         while (transform.rotation != targetRotation) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * ROTATION_SPEED);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public IEnumerator FadeToGray()
+    {
+        ColorAdjustments color;
+        GetComponentInChildren<Volume>().profile.TryGet<ColorAdjustments>(out color);
+        while (color.saturation.value > -100)
+        {
+            color.saturation.value -= 1f;
+            color.contrast.value += 1f;
             yield return new WaitForEndOfFrame();
         }
     }
