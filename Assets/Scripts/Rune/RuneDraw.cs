@@ -30,7 +30,10 @@ public class RuneDraw : MonoBehaviour
     public Sprite drawSpriteBase;
     private Texture2D drawTexture;
     private Sprite drawSprite;
+    private Texture2D lineDrawTexture;
+    private Sprite lineDrawSprite;
     [SerializeField] private Image drawImage;
+    [SerializeField] private Image lineDrawImage;
     private Vector2Int? lastPixelPos = null;
 
     private const int BRUSH_SIZE = 4;
@@ -44,15 +47,8 @@ public class RuneDraw : MonoBehaviour
             point.onPointerClick += PointClicked;
         }
 
-        drawTexture = new(drawSpriteBase.texture.height, drawSpriteBase.texture.width, TextureFormat.RGBA32, false);
-        ClearDrawTexture();
-        drawSprite = Sprite.Create(
-            drawTexture,
-            new Rect(0.0f, 0.0f, drawTexture.width, drawTexture.height),
-            new Vector2(0.0f, 0.0f),
-            100.0f
-        );
-        drawImage.sprite = drawSprite;
+        SetUpDrawTextures();
+
         orbs = new();
     }
 
@@ -84,7 +80,7 @@ public class RuneDraw : MonoBehaviour
                 //currentLineImage = Instantiate(lineImagePrefab, canvas.transform).GetComponent<Image>();
             }
             //DrawLine(currentPoint.transform.position, mousePos, Color.white);
-            DrawToTexture();
+            DrawToTexture(drawImage);
             drawing = true;
         }
         else
@@ -102,6 +98,10 @@ public class RuneDraw : MonoBehaviour
                 else
                 {
                     print("Invalid Rune!");
+                    foreach (RuneLine line in currentLines)
+                    {
+                        print(line.point_a + " + " + line.point_b);
+                    }
                 }
 
                 /*foreach(Image lineImage in lineImages)
@@ -109,7 +109,8 @@ public class RuneDraw : MonoBehaviour
                     Destroy(lineImage.gameObject);
                 }
                 Destroy(currentLineImage.gameObject);*/
-                ClearDrawTexture();
+                ClearDrawTexture(drawTexture);
+                ClearDrawTexture(lineDrawTexture);
             }
             drawing = false;
             lastPixelPos = null;
@@ -148,19 +149,34 @@ public class RuneDraw : MonoBehaviour
 
         if (point != currentPoint)
         {
-            // Use current line
-            currentLine.point_b = point.pointPosition;
-            //DrawLine(currentPoint.transform.position, point.transform.position, Color.white);
-            currentPoint = point;
+            // If passes through center, add connection there
+            if (currentLine.point_a + point.pointPosition == Vector2Int.zero)
+            {
+                currentLine.point_b = Vector2Int.zero;
+                DrawLine(currentPoint.transform.position, runePoints[0].transform.position, Color.black);
+                currentLines.Add(currentLine);
+                currentLine = new();
+                currentLine.point_a = Vector2Int.zero;
+                currentLine.point_b = point.pointPosition;
+                DrawLine(runePoints[0].transform.position, point.transform.position, Color.black);
+            }
+            else
+            {
+                // Use current line
+                currentLine.point_b = point.pointPosition;
+                DrawLine(currentPoint.transform.position, point.transform.position, Color.black);
+            }
             currentLines.Add(currentLine);
+            currentLine = new();
+            currentLine.point_a = point.pointPosition;
+            currentPoint = point;
             //lineImages.Add(currentLineImage);
 
             // Start new line
-            currentLine = new();
-            currentLine.point_a = currentPoint.pointPosition;
             //currentLineImage = Instantiate(lineImagePrefab, canvas.transform).GetComponent<Image>();
             //DrawLine(currentPoint.transform.position, mousePos, Color.white);
-            AddOrb(point);
+            ClearDrawTexture(drawTexture);
+            //AddOrb(point);
         }
     }
 
@@ -203,6 +219,14 @@ public class RuneDraw : MonoBehaviour
     // unused
     public void DrawLine(Vector2 positionOne, Vector2 positionTwo, Color color)
     {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(lineDrawImage.rectTransform, positionOne, null, out positionOne);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(lineDrawImage.rectTransform, positionTwo, null, out positionTwo);
+        positionOne = ToImageCoords(lineDrawImage, positionOne);
+        positionTwo = ToImageCoords(lineDrawImage, positionTwo);
+        DrawInterpolatedLine(lineDrawTexture,Vector2Int.FloorToInt(positionOne - Vector2.one), Vector2Int.FloorToInt(positionTwo - Vector2.one));
+        lineDrawTexture.Apply();
+
+        return;
         currentLineImage.color = color;
 
         Vector2 midpoint = (positionOne + positionTwo) / 2f;
@@ -214,18 +238,29 @@ public class RuneDraw : MonoBehaviour
         currentLineImage.transform.localScale = new Vector3(dir.magnitude, 1f, 1f);
     }
 
-    public void DrawToTexture()
+    private Vector2 ToImageCoords(Image image, Vector2 uv)
+    {
+        // Convert UV texture hit (0.0 to 1.0) into discrete integer pixel indices
+        float normalizedX = ((uv.x - image.rectTransform.rect.x) / image.rectTransform.rect.width);
+        float normalizedY = ((uv.y - image.rectTransform.rect.y) / image.rectTransform.rect.height);
+        int pixelX = (int)(normalizedX * 140);
+        int pixelY = (int)(normalizedY * 140);
+        Vector2Int currentPixelPos = new Vector2Int(Math.Clamp(pixelX, 0, drawTexture.width - BRUSH_SIZE), Math.Clamp(pixelY, 0, drawTexture.height - BRUSH_SIZE));
+        return currentPixelPos;
+    }
+
+    public void DrawToTexture(Image image)
     {
         Vector2 hitPos;
-        bool hit = RectTransformUtility.ScreenPointToLocalPointInRectangle(drawImage.rectTransform, Mouse.current.position.value, null, out hitPos);
+        bool hit = RectTransformUtility.ScreenPointToLocalPointInRectangle(image.rectTransform, Mouse.current.position.value, null, out hitPos);
 
         // Perform raycast to find the exact interaction coordinate on the object
         if (hit)
         {
             // Convert UV texture hit (0.0 to 1.0) into discrete integer pixel indices
             Vector2 uv = hitPos;
-            float normalizedX = ((uv.x - drawImage.rectTransform.rect.x) / drawImage.rectTransform.rect.width);
-            float normalizedY = ((uv.y - drawImage.rectTransform.rect.y) / drawImage.rectTransform.rect.height);
+            float normalizedX = ((uv.x - image.rectTransform.rect.x) / image.rectTransform.rect.width);
+            float normalizedY = ((uv.y - image.rectTransform.rect.y) / image.rectTransform.rect.height);
             int pixelX = (int)(normalizedX * 140);
             int pixelY = (int)(normalizedY * 140);
             Vector2Int currentPixelPos = new Vector2Int(Math.Clamp(pixelX, 0, drawTexture.width - BRUSH_SIZE), Math.Clamp(pixelY, 0, drawTexture.height - BRUSH_SIZE));
@@ -233,12 +268,12 @@ public class RuneDraw : MonoBehaviour
             if (lastPixelPos.HasValue)
             {
                 // Interpolate between the past frame and the current frame to prevent missing pixel gaps
-                DrawInterpolatedLine(lastPixelPos.Value, currentPixelPos);
+                DrawInterpolatedLine((Texture2D) image.mainTexture, lastPixelPos.Value, currentPixelPos);
             }
             else
             {
                 // Single dot draw for the initial click action
-                DrawBrush(currentPixelPos);
+                DrawBrush((Texture2D)image.mainTexture, currentPixelPos);
             }
 
             // Force upload changes to the GPU cluster
@@ -247,15 +282,15 @@ public class RuneDraw : MonoBehaviour
         }
     }
 
-    private void DrawBrush(Vector2Int center)
+    private void DrawBrush(Texture2D texture, Vector2Int center)
     {
         Color[] colorArray = new Color[16];
         Array.Fill(colorArray, Color.gray1);
-        drawTexture.SetPixels(center.x, center.y, BRUSH_SIZE / 2, BRUSH_SIZE, colorArray);
-        drawTexture.SetPixels(center.x, center.y, BRUSH_SIZE, BRUSH_SIZE / 2, colorArray);
+        texture.SetPixels(center.x, center.y, BRUSH_SIZE / 2, BRUSH_SIZE, colorArray);
+        texture.SetPixels(center.x, center.y, BRUSH_SIZE, BRUSH_SIZE / 2, colorArray);
     }
 
-    private void DrawInterpolatedLine(Vector2Int start, Vector2Int end)
+    private void DrawInterpolatedLine(Texture2D texture, Vector2Int start, Vector2Int end)
     {
         float distance = Vector2Int.Distance(start, end);
 
@@ -268,19 +303,19 @@ public class RuneDraw : MonoBehaviour
             Vector2 interpolatedPoint = Vector2.Lerp(start, end, t);
             Vector2Int pixelCoord = new Vector2Int(Mathf.RoundToInt(interpolatedPoint.x), Mathf.RoundToInt(interpolatedPoint.y));
 
-            DrawBrush(pixelCoord);
+            DrawBrush(texture, pixelCoord);
         }
     }
 
     /// <summary>
     /// Set draw texture back to all transparent pixels
     /// </summary>
-    private void ClearDrawTexture()
+    private void ClearDrawTexture(Texture2D texture)
     {
         Color[] clearPixels = new Color[drawSpriteBase.texture.height * drawSpriteBase.texture.width];
         Array.Fill(clearPixels, Color.clear);
-        drawTexture.SetPixels(clearPixels);
-        drawTexture.Apply();
+        texture.SetPixels(clearPixels);
+        texture.Apply();
     }
 
     private void PointClicked(RunePoint point)
@@ -295,6 +330,28 @@ public class RuneDraw : MonoBehaviour
         GameObject newOrb = Instantiate(orbPrefab, canvas.transform);
         newOrb.transform.position = point.transform.position;
         orbs.Add(newOrb);
+    }
+
+    private void SetUpDrawTextures()
+    {
+        drawTexture = new(drawSpriteBase.texture.height, drawSpriteBase.texture.width, TextureFormat.RGBA32, false);
+        ClearDrawTexture(drawTexture);
+        drawSprite = Sprite.Create(
+            drawTexture,
+            new Rect(0.0f, 0.0f, drawTexture.width, drawTexture.height),
+            new Vector2(0.0f, 0.0f),
+            100.0f
+        );
+        drawImage.sprite = drawSprite;
+        lineDrawTexture = new(drawSpriteBase.texture.height, drawSpriteBase.texture.width, TextureFormat.RGBA32, false);
+        ClearDrawTexture(lineDrawTexture);
+        lineDrawSprite = Sprite.Create(
+            lineDrawTexture,
+            new Rect(0.0f, 0.0f, drawTexture.width, drawTexture.height),
+            new Vector2(0.0f, 0.0f),
+            100.0f
+        );
+        lineDrawImage.sprite = lineDrawSprite;
     }
 }
 
