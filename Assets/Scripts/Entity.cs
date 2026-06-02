@@ -9,6 +9,10 @@ public class Entity : MonoBehaviour
     public bool turn = false;
     protected int rotation = 0; // most likely unused besides player
     protected Vector3 positionOffset; // offset from grid position for visuals
+    protected bool canBeAttacked = true;
+    [SerializeField] protected int maxHp = 1;
+    public int hp { get; protected set; }
+    [SerializeField] protected Damage baseAttack;
 
     // REPLACE WITH ACTION QUEUE
     protected Queue<int> rotationQueue;
@@ -16,11 +20,12 @@ public class Entity : MonoBehaviour
 
     public void Start()
     {
-        //gridPosition = 
         rotationQueue = new();
         movementQueue = new();
         gridPosition = Vector3Int.FloorToInt(transform.position);
         positionOffset = transform.position - gridPosition;
+        hp = maxHp;
+        baseAttack = new(Damage.Type.PHYSICAL, 1);
     }
 
     public virtual IEnumerator TurnUpdate()
@@ -30,8 +35,13 @@ public class Entity : MonoBehaviour
 
     public virtual void Move(Vector3Int newPosition, bool instant = false, bool teleport = false)
     {
-        if(Physics.Raycast(gridPosition + new Vector3(0.5f, 0.5f, 0.5f), newPosition - gridPosition, 1f))
+        RaycastHit hit;
+        if(Physics.Raycast(gridPosition + new Vector3(0.5f, 0.5f, 0.5f), newPosition - gridPosition, out hit, 1f))
         {
+            if(hit.transform.gameObject.CompareTag("Enemy"))
+            {
+                Attack(baseAttack, hit.transform.GetComponent<Entity>());
+            }
             movementQueue.Enqueue(new Movement(newPosition, true));
         }
         else
@@ -59,6 +69,26 @@ public class Entity : MonoBehaviour
     {
         turn = false;
     }
+
+    public virtual void Attack(Damage damage, Entity target)
+    {
+        target.TakeDamage(damage);
+    }
+
+    public virtual void TakeDamage(Damage damage)
+    {
+        hp -= damage.value;
+
+        if(hp <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    public virtual void OnDeath()
+    {
+        Destroy(this.gameObject);
+    }
 }
 
 public class Movement
@@ -70,5 +100,27 @@ public class Movement
     {
         this.position = position;
         this.bump = bump;
+    }
+}
+
+public class Damage
+{
+    public int value;
+    public Type type;
+
+    public enum Type
+    {
+        PHYSICAL,
+        FIRE,
+        GRASS,
+        WATER,
+        ICE,
+        LIGHTNING
+    }
+
+    public Damage(Type type, int value)
+    {
+        this.type = type;
+        this.value = value;
     }
 }
