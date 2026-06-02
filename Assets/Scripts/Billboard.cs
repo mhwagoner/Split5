@@ -5,8 +5,7 @@ public class Billboard : MonoBehaviour
 {
     void Update()
     {
-        transform.LookAt(Camera.main.transform.position, Vector3.up);
+        transform.rotation = Camera.main.transform.rotation;
         transform.Rotate(0, 180, 0);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
 }
