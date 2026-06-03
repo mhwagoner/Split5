@@ -7,6 +7,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class GameManager
 {
     public PlayerController player { get; set; }
+	public RuneDraw runeDraw { get; set; }
     public List<Entity> enemies { get; set; }
     public List<Entity> otherEntities { get; set; }
     public enum Turn

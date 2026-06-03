@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+//using static System.Net.Mime.MediaTypeNames;
 
 public class RuneDraw : MonoBehaviour
 {
@@ -38,9 +40,14 @@ public class RuneDraw : MonoBehaviour
 
     private const int BRUSH_SIZE = 4;
 
+    //public Action<Rune> cast;
+    [SerializeField] private bool writeToFile = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameManager.Instance.runeDraw = this;
+
         foreach(RunePoint point in runePoints)
         {
             point.onPointerEnter += PointEntered;
@@ -64,22 +71,16 @@ public class RuneDraw : MonoBehaviour
         {
             if(!drawing)
             {
-                /*RunePoint nearestPoint = runePoints[0];
-                foreach (RunePoint point in runePoints)
+                Vector2 hitPos;
+                bool hit = RectTransformUtility.ScreenPointToLocalPointInRectangle(drawImage.rectTransform, Mouse.current.position.value, null, out hitPos);
+                if (Vector2.Distance(hitPos, Vector2.zero) > 50)
                 {
-                    if(Vector2.Distance(point.transform.position, mousePos) < Vector2.Distance(nearestPoint.transform.position, mousePos))
-                    {
-                        nearestPoint = point;
-                    }
-                }*/
-                //currentLine.point_a = currentPoint.pointPosition;
+                    return;
+                }
                 currentLines = new();
                 lineImages = new();
-
-                //move and rename
-                //currentLineImage = Instantiate(lineImagePrefab, canvas.transform).GetComponent<Image>();
             }
-            //DrawLine(currentPoint.transform.position, mousePos, Color.white);
+
             DrawToTexture(drawImage);
             drawing = true;
         }
@@ -102,6 +103,12 @@ public class RuneDraw : MonoBehaviour
                     {
                         print(line.point_a + " + " + line.point_b);
                     }
+                }
+
+                // REMOVE FOR BUILD (i think you can actually do that as an IFDEF or something but idc)
+                if(writeToFile)
+                {
+                    WriteDrawingToFile();
                 }
 
                 /*foreach(Image lineImage in lineImages)
@@ -352,6 +359,15 @@ public class RuneDraw : MonoBehaviour
             100.0f
         );
         lineDrawImage.sprite = lineDrawSprite;
+    }
+
+    private void WriteDrawingToFile()
+    {
+        byte[] bytes = lineDrawTexture.EncodeToPNG();
+
+        // 4. Save the bytes to your project directory
+        string path = Path.Combine(UnityEngine.Application.dataPath, "Export/" + Time.time.ToString() + ".png");
+        File.WriteAllBytes(path, bytes);
     }
 }
 
