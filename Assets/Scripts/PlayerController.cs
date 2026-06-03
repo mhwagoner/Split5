@@ -11,8 +11,9 @@ public class PlayerController : Creature
 {
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference turnAction;
+    [SerializeField] private InputActionReference skipAction;
     private const float ROTATION_SPEED = 700f;
-    private const float MOVE_SPEED = 10.0f;
+    private Spell queueSpell = null;
 
     private void Start()
     {
@@ -32,15 +33,24 @@ public class PlayerController : Creature
     {
         base.TurnUpdate();
 
+        if(queueSpell != null)
+        {
+            queueSpell.Cast(this);
+            queueSpell = null;
+            EndTurn();
+            return;
+        }
+
         Input();
     }
 
     private void Input()
     {
-        // DEBUG
-        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        // DEBUG CHANGE SPACE TO SKIP TURN
+        if(skipAction.ToInputAction().WasPressedThisFrame())
         {
-            StartCoroutine(GameManager.Instance.Timer());
+            EndTurn();
+            return;
         }
 
         if (turnAction.ToInputAction().WasPressedThisFrame())
@@ -70,6 +80,7 @@ public class PlayerController : Creature
                 Vector3 moveVector = targetRotation * Vector3.right * movement.x + targetRotation * Vector3.forward * movement.y;
                 Move(Vector3Int.RoundToInt(gridPosition + moveVector));
                 EndTurn();
+                return;
             }
         }
     }
@@ -79,15 +90,9 @@ public class PlayerController : Creature
         base.Rotate(ref newRotation);
     }
 
-    public IEnumerator RunMovementQueue()
+    public void QueueCast(Spell spell)
     {
-        while (true) {
-            if (movementQueue.Count > 0)
-            {
-                yield return MovementVisual(movementQueue.Dequeue());
-            }
-            yield return new WaitForEndOfFrame();
-        }
+        queueSpell = spell;
     }
 
     public IEnumerator RunRotationQueue()
@@ -99,35 +104,6 @@ public class PlayerController : Creature
                 yield return RotationVisual(rotationQueue.Dequeue());
             }
             yield return new WaitForEndOfFrame();
-        }
-    }
-
-    public IEnumerator MovementVisual(Movement movement)
-    {
-        if (movement.bump)
-        {
-            Vector3 startpos = transform.position;
-            // first loop
-            while (Vector3.Distance(transform.position - positionOffset, movement.position) > 0.75f)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, movement.position + positionOffset, Time.deltaTime * MOVE_SPEED);
-                yield return new WaitForEndOfFrame();
-            }
-
-            // move back from bump
-            while (transform.position != startpos)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, startpos, Time.deltaTime * MOVE_SPEED);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-        else
-        {
-            while (transform.position - positionOffset != movement.position)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, movement.position + positionOffset, Time.deltaTime * MOVE_SPEED);
-                yield return new WaitForEndOfFrame();
-            }
         }
     }
 

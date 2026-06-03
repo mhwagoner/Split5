@@ -486,6 +486,7 @@ MonoBehaviour:
   drawSpriteBase: {fileID: 21300000, guid: a3551d727940f6747aeb85b21bbe0f63, type: 3}
   drawImage: {fileID: 7537091297212419805}
   lineDrawImage: {fileID: 3926309017501501653}
+  writeToFile: 0
 --- !u!1 &3481033375960320728
 GameObject:
   m_ObjectHideFlags: 0

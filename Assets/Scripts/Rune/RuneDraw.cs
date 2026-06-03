@@ -106,6 +106,7 @@ public class RuneDraw : MonoBehaviour
                 if(writeToFile)
                 {
                     WriteDrawingToFile();
+                    WriteLinesToTxt();
                 }
 
                 /*foreach(Image lineImage in lineImages)
@@ -188,32 +189,39 @@ public class RuneDraw : MonoBehaviour
     {
         if (currentLines.Count > 0)
         {
-            foreach(Rune rune in runes)
+            foreach (Spell spell in GameManager.Instance.spellManager.spells)
             {
-                bool runeMatch = true;
-                foreach (RuneLine runeLine in rune.lines)
+                foreach (Rune rune in spell.runes)
                 {
-                    bool lineFound = false;
-
-                    foreach (RuneLine currentLine in currentLines)
+                    bool runeMatch = true;
+                    foreach (RuneLine runeLine in rune.lines)
                     {
-                        // check both a -> b and b <- a
-                        if((currentLine.point_a == runeLine.point_a && currentLine.point_b == runeLine.point_b) || (currentLine.point_a == runeLine.point_b && currentLine.point_b == runeLine.point_a))
+                        bool lineFound = false;
+
+                        foreach (RuneLine currentLine in currentLines)
                         {
-                            lineFound = true;
+                            // check both a -> b and b <- a
+                            if ((currentLine.point_a == runeLine.point_a && currentLine.point_b == runeLine.point_b) || (currentLine.point_a == runeLine.point_b && currentLine.point_b == runeLine.point_a))
+                            {
+                                lineFound = true;
+                            }
+                        }
+
+                        if (!lineFound)
+                        {
+                            runeMatch = false;
+                            break;
                         }
                     }
 
-                    if(!lineFound)
+                    if (runeMatch)
                     {
-                        runeMatch = false;
-                        break;
+                        if(GameManager.Instance.player)
+                        {
+                            GameManager.Instance.player.QueueCast(spell);
+                        }
+                        return true;
                     }
-                }
-
-                if(runeMatch)
-                {
-                    return true;
                 }
             }
         }
@@ -366,6 +374,22 @@ public class RuneDraw : MonoBehaviour
         string path = Path.Combine(UnityEngine.Application.dataPath, "Export/" + Time.time.ToString() + ".png");
         File.WriteAllBytes(path, bytes);
     }
+
+    private void WriteLinesToTxt()
+    {
+        string path = Path.Combine(UnityEngine.Application.dataPath, "Export/" + Time.time.ToString() + ".txt");
+        string text = "new Rune( new RuneLine[] { ";
+        foreach (RuneLine line in currentLines)
+        {
+            // IDK FIGURE OUT
+            // new RuneLine[] { new RuneLine(0, 1, 0, 0) }
+            text += "new RuneLine(" + line.point_a.x + ", " + line.point_a.y + ", " + line.point_b.x + ", " + line.point_b.y + "), ";
+        }
+        text.Remove(text.Length - 3);
+        text += "} )";
+
+        File.WriteAllText(path, text);
+    }
 }
 
 [System.Serializable]
@@ -384,7 +408,17 @@ public class Rune
      *          [0,-1]
      */
 
-    public RuneLine[] lines;
+    public List<RuneLine> lines;
+
+    public Rune()
+    {
+
+    }
+
+    public Rune(RuneLine[] lines)
+    {
+        this.lines = new List<RuneLine>(lines);
+    }
 }
 
 [System.Serializable]
@@ -393,4 +427,15 @@ public class RuneLine
     public Vector2Int point_a;
     public Vector2Int point_b;
     //public bool empty = false;
+
+    public RuneLine()
+    {
+
+    }
+
+    public RuneLine(int point_a_x, int point_a_y, int point_b_x, int point_b_y)
+    {
+        point_a = new Vector2Int(point_a_x, point_a_y);
+        point_b = new Vector2Int(point_b_x, point_b_y);
+    }
 }

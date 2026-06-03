@@ -11,6 +11,7 @@ public class GameManager
 	public CreateGameManager gameRunner { get; set; }
     public PlayerController player { get; set; }
 	public RuneDraw runeDraw { get; set; }
+	public SpellManager spellManager { get; set; }
     public List<Entity> enemies { get; set; }
     public List<Entity> otherEntities { get; set; }
     public enum Turn

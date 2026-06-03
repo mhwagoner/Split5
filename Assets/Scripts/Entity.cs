@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour
 {
     public Vector3Int gridPosition;
     public bool turn = false;
-    protected int rotation = 0; // most likely unused besides player
+    public int rotation = 0; // most likely unused besides player
     protected Vector3 positionOffset; // offset from grid position for visuals
     protected bool canBeAttacked = true;
     [SerializeField] protected int maxHp = 1;
@@ -17,6 +17,7 @@ public class Entity : MonoBehaviour
     // REPLACE WITH ACTION QUEUE
     protected Queue<int> rotationQueue;
     protected Queue<Movement> movementQueue;
+    protected const float MOVE_SPEED = 10.0f;
 
     public void Start()
     {
@@ -35,26 +36,34 @@ public class Entity : MonoBehaviour
 
     public virtual void Move(Vector3Int newPosition, bool instant = false, bool teleport = false)
     {
-        RaycastHit hit;
-        if(Physics.Raycast(gridPosition + new Vector3(0.5f, 0.5f, 0.5f), newPosition - gridPosition, out hit, 1f))
+        if (!teleport)
         {
-            if(hit.transform.gameObject.CompareTag("Enemy"))
+            RaycastHit hit;
+            if (Physics.Raycast(gridPosition + new Vector3(0.5f, 0.5f, 0.5f), newPosition - gridPosition, out hit, 1f))
             {
-                Attack(baseAttack, hit.transform.GetComponent<Entity>());
-            }
-            movementQueue.Enqueue(new Movement(newPosition, true));
-        }
-        else
-        {
-            if (Physics.Raycast(newPosition + new Vector3(0.5f, 0.5f, 0.5f), Vector3.down, 1f))
-            {
-                gridPosition = newPosition;
-                movementQueue.Enqueue(new Movement(newPosition, false));
+                if (hit.transform.gameObject.CompareTag("Enemy"))
+                {
+                    Attack(baseAttack, hit.transform.GetComponent<Entity>());
+                }
+                movementQueue.Enqueue(new Movement(newPosition, true));
             }
             else
             {
-                movementQueue.Enqueue(new Movement(newPosition, true));
+                if (Physics.Raycast(newPosition + new Vector3(0.5f, 0.5f, 0.5f), Vector3.down, 1f))
+                {
+                    gridPosition = newPosition;
+                    movementQueue.Enqueue(new Movement(newPosition, false));
+                }
+                else
+                {
+                    movementQueue.Enqueue(new Movement(newPosition, true));
+                }
             }
+        }
+        else
+        {
+            gridPosition = newPosition;
+            transform.position = newPosition + positionOffset;
         }
     }
 
@@ -105,6 +114,56 @@ public class Entity : MonoBehaviour
     public virtual void OnDeath()
     {
         Destroy(this.gameObject);
+    }
+
+    public virtual bool OnSpellHit(Spell spell, Damage damage)
+    {
+        if(canBeAttacked)
+        {
+            TakeDamage(damage);
+        }
+        return true;
+    }
+
+    public IEnumerator RunMovementQueue()
+    {
+        while (true)
+        {
+            if (movementQueue.Count > 0)
+            {
+                yield return MovementVisual(movementQueue.Dequeue());
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public IEnumerator MovementVisual(Movement movement)
+    {
+        if (movement.bump)
+        {
+            Vector3 startpos = transform.position;
+            // first loop
+            while (Vector3.Distance(transform.position - positionOffset, movement.position) > 0.75f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, movement.position + positionOffset, Time.deltaTime * MOVE_SPEED);
+                yield return new WaitForEndOfFrame();
+            }
+
+            // move back from bump
+            while (transform.position != startpos)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, startpos, Time.deltaTime * MOVE_SPEED);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        else
+        {
+            while (transform.position - positionOffset != movement.position)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, movement.position + positionOffset, Time.deltaTime * MOVE_SPEED);
+                yield return new WaitForEndOfFrame();
+            }
+        }
     }
 }
 
