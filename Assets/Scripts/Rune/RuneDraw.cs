@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-//using static System.Net.Mime.MediaTypeNames;
 
 public class RuneDraw : MonoBehaviour
 {
@@ -62,8 +61,6 @@ public class RuneDraw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, Mouse.current.position.value, Camera.main, out mousePos);
-        //mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
         mousePos = Mouse.current.position.value;
 
         // Poop code, replace maybe

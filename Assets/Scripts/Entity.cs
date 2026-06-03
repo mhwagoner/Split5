@@ -28,9 +28,9 @@ public class Entity : MonoBehaviour
         baseAttack = new(Damage.Type.PHYSICAL, 1);
     }
 
-    public virtual IEnumerator TurnUpdate()
+    public virtual void TurnUpdate()
     {
-        yield break;
+        //yield break;
     }
 
     public virtual void Move(Vector3Int newPosition, bool instant = false, bool teleport = false)
@@ -46,8 +46,15 @@ public class Entity : MonoBehaviour
         }
         else
         {
-            gridPosition = newPosition;
-            movementQueue.Enqueue(new Movement(newPosition, false));
+            if (Physics.Raycast(newPosition + new Vector3(0.5f, 0.5f, 0.5f), Vector3.down, 1f))
+            {
+                gridPosition = newPosition;
+                movementQueue.Enqueue(new Movement(newPosition, false));
+            }
+            else
+            {
+                movementQueue.Enqueue(new Movement(newPosition, true));
+            }
         }
     }
 
@@ -59,10 +66,20 @@ public class Entity : MonoBehaviour
         rotationQueue.Enqueue(rotation);
     }
 
+    public IEnumerator RunTurn()
+    {
+        StartTurn();
+
+        while (turn)
+        {
+            TurnUpdate();
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public virtual void StartTurn()
     {
         turn = true;
-        StartCoroutine(TurnUpdate());
     }
 
     public virtual void EndTurn()
