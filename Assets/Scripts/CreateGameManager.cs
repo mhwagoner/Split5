@@ -17,18 +17,38 @@ public class CreateGameManager : MonoBehaviour
                 GameManager.Instance.tilemaps.Add((int) tilemap.transform.position.y, tilemap);
             }
         }
+        GameManager.Instance.gameRunner = this;
+        GameManager.Instance.onTimeExpire += StartReduceTimescale;
+
         StartCoroutine(StartGame());
+        //StartCoroutine(GameManager.Instance.Timer());
     }
 
     private IEnumerator StartGame()
     {
         yield return new WaitForEndOfFrame();
-        StartCoroutine(GameManager.Instance.TurnUpdate());
+        StartCoroutine(GameManager.Instance.RunGame());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void StartReduceTimescale()
+    {
+        StartCoroutine(ReduceTimescale());
+    }
+
+    private IEnumerator ReduceTimescale()
+    {
+        while (Time.timeScale > 0.0f)
+        {
+            Time.timeScale -= Mathf.Min(0.01f, Time.timeScale);
+            print(Time.timeScale);
+            GameManager.Instance.onChangeTimescale?.Invoke();
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8820364640981480787}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Creature
   gridPosition: {x: 0, y: 0, z: 0}
   turn: 0
+  maxHp: 1
 --- !u!114 &500852186755124914
 MonoBehaviour:
   m_ObjectHideFlags: 0

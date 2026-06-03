@@ -28,16 +28,21 @@ public class PlayerController : Creature
         
     }
 
-    public override IEnumerator TurnUpdate()
+    public override void TurnUpdate()
     {
         base.TurnUpdate();
 
         Input();
-        yield return new WaitForEndOfFrame();
     }
 
     private void Input()
     {
+        // DEBUG
+        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            StartCoroutine(GameManager.Instance.Timer());
+        }
+
         if (turnAction.ToInputAction().WasPressedThisFrame())
         {
             int turnInput = Mathf.CeilToInt(turnAction.ToInputAction().ReadValue<float>());
@@ -131,18 +136,6 @@ public class PlayerController : Creature
         Quaternion targetRotation = Quaternion.LookRotation(Quaternion.Euler(new Vector3(0, rotation * 90f, 0)) * Vector3.forward);
         while (transform.rotation != targetRotation) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * ROTATION_SPEED);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    public IEnumerator FadeToGray()
-    {
-        ColorAdjustments color;
-        GetComponentInChildren<Volume>().profile.TryGet<ColorAdjustments>(out color);
-        while (color.saturation.value > -100)
-        {
-            color.saturation.value -= 1f;
-            color.contrast.value += 1f;
             yield return new WaitForEndOfFrame();
         }
     }
