@@ -3,8 +3,11 @@ using UnityEngine;
 using UnityEngine.LowLevelPhysics2D;
 using UnityEngine.Tilemaps;
 
+// RENAME TO GAME RUNNER OR SOMETHING
 public class CreateGameManager : MonoBehaviour
 {
+    private bool newRound = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -20,20 +23,31 @@ public class CreateGameManager : MonoBehaviour
         GameManager.Instance.gameRunner = this;
         GameManager.Instance.onTimeExpire += StartReduceTimescale;
 
-        StartCoroutine(StartGame());
-        //StartCoroutine(GameManager.Instance.Timer());
+        //StartCoroutine(RoundEnd());
+        StartCoroutine(GameManager.Instance.Timer());
     }
 
     private IEnumerator StartGame()
     {
         yield return new WaitForEndOfFrame();
-        GameManager.Instance.gameCoroutine = StartCoroutine(GameManager.Instance.RunGame());
+        GameManager.Instance.RunGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.Instance.runGameLogic)
+        {
+            if (GameManager.Instance.playerTurn)
+            {
+                GameManager.Instance.TurnPlayer();
+            }
+            else
+            {
+                GameManager.Instance.TurnEnemy();
+                GameManager.Instance.playerTurn = true;
+            }
+        }
     }
 
     private void StartReduceTimescale()
@@ -50,5 +64,11 @@ public class CreateGameManager : MonoBehaviour
             GameManager.Instance.onChangeTimescale?.Invoke();
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public IEnumerator RoundEnd()
+    {
+        yield return new WaitForEndOfFrame();
+        newRound = true;
     }
 }

@@ -28,6 +28,8 @@ public class GameManager
 	public Action onTimeExpire; // Used to start coroutines in effect scripts to slow until timeScale == 0;
 	public Action onChangeTimescale;
 	public Coroutine gameCoroutine;
+    public bool playerTurn = true;
+	public bool runGameLogic = true;
 
     public static GameManager theInstance { get; private set; }
     public static GameManager Instance
@@ -46,28 +48,27 @@ public class GameManager
 	}
 
     // Interesting note (to me): this doesn't run by itself, another object needs to give it a "push" to make the game run
-    public IEnumerator RunGame()
+    public void RunGame()
 	{
-		while(true)
-		{
-			yield return TurnPlayer();
+		TurnPlayer();
 
-            //yield return new WaitForEndOfFrame();
+        //yield return new WaitForEndOfFrame();
 
-            yield return TurnEnemy();
-        }
+        TurnEnemy();
+
+		gameRunner.StartCoroutine(gameRunner.RoundEnd());
 	}
 
-	public IEnumerator TurnPlayer()
+	public void TurnPlayer()
 	{
-        yield return player.RunTurn();
+        player.TurnUpdate();
     }
 
-	public IEnumerator TurnEnemy()
+	public void TurnEnemy()
 	{
 		foreach (Entity enemy in enemies)
 		{
-			yield return enemy.RunTurn();
+			enemy.TurnUpdate();
 		}
     }
 
@@ -78,15 +79,15 @@ public class GameManager
 
 	public void PlayerDeath()
 	{
-		gameRunner.StopCoroutine(gameCoroutine);
 		gameRunner.StopCoroutine(Timer());
-	}
+		runGameLogic = false;
+
+    }
 
 	public void TimeExpire()
 	{
-        gameRunner.StopAllCoroutines();
-        player.StopCoroutine(player.RunTurn());
 		onTimeExpire?.Invoke();
+		runGameLogic = false;
     }
 
 	public void InitiatePositions()

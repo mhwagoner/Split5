@@ -225,3 +225,34 @@ public class Rainbow : Spell
 }
 
 // Heart Shape: new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, 1), new RuneLine(1, 1, 1, 0), new RuneLine(1, 0, 1, -1), new RuneLine(1, -1, 0, -1), new RuneLine(0, -1, -1, -1), new RuneLine(-1, -1, -1, 0), } )
+// alt cast with lines separating: new Rune( new RuneLine[] { new RuneLine(-1, 1, -1, 0), new RuneLine(-1, 0, -1, -1), new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 1, 0), new RuneLine(1, 0, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, -1), } )
+
+public class SecretYume : Spell
+{
+    public SecretYume()
+    {
+        runes = new List<Rune>(new Rune[] {
+            new Rune( new RuneLine[] { new RuneLine(-1, 1, 0, 1), new RuneLine(0, 1, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, 1), } )
+            });
+    }
+
+    public override void Cast(Entity caster)
+    {
+        // go to scene
+    }
+}
+
+public class SecretLodge : Spell
+{
+    public SecretLodge()
+    {
+        runes = new List<Rune>(new Rune[] {
+            new Rune( new RuneLine[] { new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, 1), new RuneLine(1, 1, 1, 0), new RuneLine(1, 0, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, -1, 1), new RuneLine(-1, 1, -1, 0), } )
+            });
+    }
+
+    public override void Cast(Entity caster)
+    {
+        // go to scene
+    }
+}

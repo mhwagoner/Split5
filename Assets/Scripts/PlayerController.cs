@@ -31,6 +31,11 @@ public class PlayerController : Creature
         {
             queueRotation = Mathf.RoundToInt(turnAction.ToInputAction().ReadValue<float>());
         }
+
+        if(turn)
+        {
+            TurnUpdate();
+        }
     }
 
     public override void TurnUpdate()
@@ -132,6 +137,7 @@ public class PlayerController : Creature
     public override void EndTurn()
     {
         base.EndTurn();
+        GameManager.Instance.playerTurn = false;
     }
 
     public override void OnDeath()
