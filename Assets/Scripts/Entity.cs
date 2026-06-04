@@ -20,6 +20,8 @@ public class Entity : MonoBehaviour
     protected Queue<Movement> movementQueue;
     protected float MOVE_SPEED = 10.0f;
 
+    public AudioSource audioSource;
+
     public void Start()
     {
         rotationQueue = new();
@@ -28,6 +30,7 @@ public class Entity : MonoBehaviour
         positionOffset = transform.position - gridPosition;
         hp = maxHp;
         StartCoroutine(RunMovementQueue());
+        TryGetComponent<AudioSource>(out audioSource);
     }
 
     public virtual void TurnUpdate()

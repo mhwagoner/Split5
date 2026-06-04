@@ -36,6 +36,8 @@ public class RuneDraw : MonoBehaviour
     [SerializeField] private Image drawImage;
     [SerializeField] private Image lineDrawImage;
     private Vector2Int? lastPixelPos = null;
+    private AudioSource audioSource;
+    private int drawAudioDelay = 0;
 
     private const int BRUSH_SIZE = 4;
 
@@ -56,6 +58,7 @@ public class RuneDraw : MonoBehaviour
         SetUpDrawTextures();
 
         orbs = new();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -76,6 +79,7 @@ public class RuneDraw : MonoBehaviour
                 }
                 currentLines = new();
                 lineImages = new();
+                audioSource.Play();
             }
 
             DrawToTexture(drawImage);
@@ -108,6 +112,7 @@ public class RuneDraw : MonoBehaviour
                 Destroy(currentLineImage.gameObject);*/
                 ClearDrawTexture(drawTexture);
                 ClearDrawTexture(lineDrawTexture);
+                audioSource.Stop();
             }
             drawing = false;
             lastPixelPos = null;
@@ -276,6 +281,15 @@ public class RuneDraw : MonoBehaviour
             {
                 // Interpolate between the past frame and the current frame to prevent missing pixel gaps
                 DrawInterpolatedLine((Texture2D) image.mainTexture, lastPixelPos.Value, currentPixelPos);
+
+                if(lastPixelPos != currentPixelPos)
+                {
+                    DrawAudio(true);
+                }
+                else
+                {
+                    DrawAudio(false);
+                }
             }
             else
             {
@@ -384,6 +398,24 @@ public class RuneDraw : MonoBehaviour
         text += "} )";
 
         File.WriteAllText(path, text);
+    }
+
+    private void DrawAudio(bool draw)
+    {
+        if (draw)
+        {
+            audioSource.pitch = 1;
+            drawAudioDelay = 0;
+        }
+        else
+        {
+            drawAudioDelay++;
+
+            if (drawAudioDelay > 5)
+            {
+                audioSource.pitch = 0;
+            }
+        }
     }
 }
 

@@ -17,6 +17,9 @@ public class PlayerController : Creature
 
     private int queueRotation = 0;
 
+    [Header("Sound Effects")]
+    [SerializeField] public AudioClip clockTick;
+
     private void Start()
     {
         base.Start();

@@ -103,17 +103,24 @@ public class GameManager
 	public IEnumerator Timer()
 	{
 		yield return new WaitForSeconds(25.0f);
-        // play ticking sound (like the chrono trigger title screen)
-        yield return new WaitForSeconds(1.0f);
-		// tick
-        yield return new WaitForSeconds(1.0f);
-        // tick
+		// play ticking sound (like the chrono trigger title screen)
+		player.audioSource.PlayOneShot(player.clockTick);
         yield return new WaitForSeconds(1.0f);
         // tick
+        player.audioSource.PlayOneShot(player.clockTick);
         yield return new WaitForSeconds(1.0f);
         // tick
+        player.audioSource.PlayOneShot(player.clockTick);
         yield return new WaitForSeconds(1.0f);
-		// gong
-		TimeExpire();
+        // tick
+        player.audioSource.PlayOneShot(player.clockTick);
+        yield return new WaitForSeconds(1.0f);
+        // tick
+        player.audioSource.PlayOneShot(player.clockTick);
+        yield return new WaitForSeconds(1.0f);
+        // gong
+        player.audioSource.Stop();
+        player.audioSource.PlayOneShot(player.clockTick);
+        TimeExpire();
     }
 }

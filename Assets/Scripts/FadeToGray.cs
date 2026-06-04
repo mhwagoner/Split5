@@ -23,7 +23,7 @@ public class FadeToGray : MonoBehaviour
     private void ChangeFade()
     {
         color.saturation.value = (Mathf.Min(Time.timeScale, 1f) - 1f) * 100f;
-        color.contrast.value = (Mathf.Min(Time.timeScale, 1f) - 1f) * -100f;
+        //color.contrast.value = (Mathf.Min(Time.timeScale, 1f) - 1f) * -100f;
         GetComponentInChildren<Volume>().profile.TryGet<ColorAdjustments>(out color);
     }
 }

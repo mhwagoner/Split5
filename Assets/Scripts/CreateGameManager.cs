@@ -23,7 +23,7 @@ public class CreateGameManager : MonoBehaviour
         GameManager.Instance.gameRunner = this;
         GameManager.Instance.onTimeExpire += StartReduceTimescale;
 
-        //StartCoroutine(GameManager.Instance.Timer());
+        StartCoroutine(GameManager.Instance.Timer());
     }
 
     private IEnumerator StartGame()
@@ -58,7 +58,7 @@ public class CreateGameManager : MonoBehaviour
     {
         while (Time.timeScale > 0.0f)
         {
-            Time.timeScale -= Mathf.Min(0.01f, Time.timeScale);
+            Time.timeScale -= Mathf.Min(0.02f, Time.timeScale);
             print(Time.timeScale);
             GameManager.Instance.onChangeTimescale?.Invoke();
             yield return new WaitForEndOfFrame();
