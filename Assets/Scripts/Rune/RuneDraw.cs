@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class RuneDraw : MonoBehaviour
 {
-    [SerializeField] private Rune[] runes;
+    //[SerializeField] private Rune[] runes;
     [SerializeField] private RunePoint[] runePoints;
 
     private RunePoint currentPoint;
@@ -88,18 +88,10 @@ public class RuneDraw : MonoBehaviour
                 if(CheckForRune())
                 {
                     print("Rune Found!");
-                    foreach (RuneLine line in currentLines)
-                    {
-                        print(line.point_a + " + " + line.point_b);
-                    }
                 }
                 else
                 {
                     print("Invalid Rune!");
-                    foreach (RuneLine line in currentLines)
-                    {
-                        print(line.point_a + " + " + line.point_b);
-                    }
                 }
 
                 // REMOVE FOR BUILD (i think you can actually do that as an IFDEF or something but idc)
@@ -194,11 +186,11 @@ public class RuneDraw : MonoBehaviour
                 foreach (Rune rune in spell.runes)
                 {
                     bool runeMatch = true;
-                    foreach (RuneLine runeLine in rune.lines)
+                    foreach (RuneLine currentLine in currentLines)
                     {
                         bool lineFound = false;
 
-                        foreach (RuneLine currentLine in currentLines)
+                        foreach (RuneLine runeLine in rune.lines)
                         {
                             // check both a -> b and b <- a
                             if ((currentLine.point_a == runeLine.point_a && currentLine.point_b == runeLine.point_b) || (currentLine.point_a == runeLine.point_b && currentLine.point_b == runeLine.point_a))
@@ -219,6 +211,7 @@ public class RuneDraw : MonoBehaviour
                         if(GameManager.Instance.player)
                         {
                             GameManager.Instance.player.QueueCast(spell);
+                            print(spell.GetType().Name);
                         }
                         return true;
                     }

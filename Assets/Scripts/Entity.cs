@@ -116,13 +116,14 @@ public class Entity : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public virtual bool OnSpellHit(Spell spell, Damage damage)
+    public virtual bool OnSpellHit(Spell spell, Entity caster)
     {
         if(canBeAttacked)
         {
-            TakeDamage(damage);
+            TakeDamage(spell.damage);
+            return true;
         }
-        return true;
+        return false;
     }
 
     public IEnumerator RunMovementQueue()
@@ -191,7 +192,10 @@ public class Damage
         GRASS,
         WATER,
         ICE,
-        LIGHTNING
+        LIGHTNING,
+        ROCK,
+        WIND,
+        RAINBOW
     }
 
     public Damage(Type type, int value)

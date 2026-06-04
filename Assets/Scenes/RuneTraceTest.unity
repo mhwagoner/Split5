@@ -854,7 +854,7 @@ PrefabInstance:
       objectReference: {fileID: 804650923}
     - target: {fileID: 1179725976667644449, guid: 7c44c6f8f1e647648bb3345392ea9595, type: 3}
       propertyPath: writeToFile
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1597611719089541349, guid: 7c44c6f8f1e647648bb3345392ea9595, type: 3}
       propertyPath: m_Name
