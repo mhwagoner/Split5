@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4279173889100322729}
   - component: {fileID: 292458332795481131}
   - component: {fileID: 8341729808651536414}
+  - component: {fileID: 2353562815774673649}
   m_Layer: 0
   m_Name: Brick_Plant_Dead_Block
   m_TagString: Untagged
@@ -112,3 +113,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2353562815774673649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186175267695167567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45513e91a68d7434d8c411c679bd4e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Plant
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 0
+  maxHp: 1
+  baseAttack:
+    value: 0
+    type: 0
+  plantAlive: {fileID: 2100000, guid: b1dea28ee6274544a891cc950d503e8c, type: 2}
+  plantDead: {fileID: 2100000, guid: 534a1c942b07a8541912e04777a03e30, type: 2}
+  state: 1
+  plantAliveEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  plantDeadEvent:
+    m_PersistentCalls:
+      m_Calls: []

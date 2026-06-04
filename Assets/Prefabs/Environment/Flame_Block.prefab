@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7467882514610389285}
   - component: {fileID: 6627358832530945638}
   - component: {fileID: 5344683059820801445}
+  - component: {fileID: 1218053151278779171}
   m_Layer: 0
   m_Name: Flame_Block
   m_TagString: Untagged
@@ -113,6 +114,29 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1218053151278779171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7302734120762161564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8216dca59c64649b13677de65c7ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fire
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 0
+  maxHp: 1
+  baseAttack:
+    value: 0
+    type: 0
+  destroyEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7664271382124984845
 GameObject:
   m_ObjectHideFlags: 0

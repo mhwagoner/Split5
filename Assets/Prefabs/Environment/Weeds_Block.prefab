@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4023386706509082967}
   - component: {fileID: 6454438570303564179}
   - component: {fileID: 2867874145268968432}
+  - component: {fileID: 2507359450433502469}
   m_Layer: 0
   m_Name: Weeds_Block
   m_TagString: Untagged
@@ -112,3 +113,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2507359450433502469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051226279379371639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6f3e58c7161384498becf871c7858f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Burnable
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 0
+  maxHp: 1
+  baseAttack:
+    value: 0
+    type: 0
+  destroyEvent:
+    m_PersistentCalls:
+      m_Calls: []

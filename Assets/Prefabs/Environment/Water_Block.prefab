@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7068525014710040386}
   - component: {fileID: 7406873233979413780}
   - component: {fileID: 2781148678678759242}
+  - component: {fileID: 5775870678462788024}
   m_Layer: 0
   m_Name: Water_Block
   m_TagString: Untagged
@@ -112,3 +113,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &5775870678462788024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376143466135619876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8fa7129e0b4c24e9d76bceda1427ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Water
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 0
+  maxHp: 1
+  baseAttack:
+    value: 0
+    type: 0
+  iceBlock: {fileID: 2387627011140398861, guid: 7c31f56b9ecd3e943a615f396cb30746, type: 3}
+  freezeEvent:
+    m_PersistentCalls:
+      m_Calls: []

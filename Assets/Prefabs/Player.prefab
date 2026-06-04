@@ -252,6 +252,9 @@ MonoBehaviour:
   rotation: 0
   canBeAttacked: 1
   maxHp: 0
+  baseAttack:
+    value: 1
+    type: 0
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   turnAction: {fileID: 5738165364234612898, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   skipAction: {fileID: 6020673069806943349, guid: 052faaac586de48259a63d0c4782560b, type: 3}

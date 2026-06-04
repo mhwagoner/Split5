@@ -20,7 +20,6 @@ public class PlayerController : Creature
         base.Start();
 
         GameManager.Instance.player = this;
-        StartCoroutine(RunMovementQueue());
         StartCoroutine(RunRotationQueue());
     }
 

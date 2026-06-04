@@ -26,7 +26,7 @@ public class Entity : MonoBehaviour
         gridPosition = Vector3Int.FloorToInt(transform.position);
         positionOffset = transform.position - gridPosition;
         hp = maxHp;
-        baseAttack = new(Damage.Type.PHYSICAL, 1);
+        StartCoroutine(RunMovementQueue());
     }
 
     public virtual void TurnUpdate()
@@ -34,7 +34,7 @@ public class Entity : MonoBehaviour
         //yield break;
     }
 
-    public virtual void Move(Vector3Int newPosition, bool instant = false, bool teleport = false)
+    public virtual bool Move(Vector3Int newPosition, bool instant = false, bool teleport = false)
     {
         if (!teleport)
         {
@@ -46,6 +46,7 @@ public class Entity : MonoBehaviour
                     Attack(baseAttack, hit.transform.GetComponent<Entity>());
                 }
                 movementQueue.Enqueue(new Movement(newPosition, true));
+                return false;
             }
             else
             {
@@ -53,18 +54,28 @@ public class Entity : MonoBehaviour
                 {
                     gridPosition = newPosition;
                     movementQueue.Enqueue(new Movement(newPosition, false));
+                    return true;
                 }
                 else
                 {
                     movementQueue.Enqueue(new Movement(newPosition, true));
+                    return false;
                 }
             }
         }
         else
         {
             gridPosition = newPosition;
-            transform.position = newPosition + positionOffset;
+            if (instant)
+            {
+                transform.position = newPosition + positionOffset;
+            }
+            else
+            {
+                movementQueue.Enqueue(new Movement(newPosition, false));
+            }
         }
+        return true;
     }
 
     // might go unused outside of player
@@ -180,10 +191,11 @@ public class Movement
     }
 }
 
+[System.Serializable]
 public class Damage
 {
-    public int value;
-    public Type type;
+    public int value = 1;
+    public Type type = Type.PHYSICAL;
 
     public enum Type
     {

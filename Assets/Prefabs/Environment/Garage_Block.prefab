@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2751087491186573048}
   - component: {fileID: 5086638149216634108}
   - component: {fileID: 1872533761077980081}
+  - component: {fileID: 4405425530966139220}
   m_Layer: 0
   m_Name: Garage_Block
   m_TagString: Untagged
@@ -112,3 +113,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4405425530966139220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264057927949189824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1bc791df9a3e74ea1c8b9cdac646ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Garage
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 0
+  maxHp: 1
+  baseAttack:
+    value: 0
+    type: 0
+  openEvent:
+    m_PersistentCalls:
+      m_Calls: []

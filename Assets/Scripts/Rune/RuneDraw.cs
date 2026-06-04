@@ -186,6 +186,7 @@ public class RuneDraw : MonoBehaviour
                 foreach (Rune rune in spell.runes)
                 {
                     bool runeMatch = true;
+                    int lineCount = rune.lines.Count;
                     foreach (RuneLine currentLine in currentLines)
                     {
                         bool lineFound = false;
@@ -196,6 +197,7 @@ public class RuneDraw : MonoBehaviour
                             if ((currentLine.point_a == runeLine.point_a && currentLine.point_b == runeLine.point_b) || (currentLine.point_a == runeLine.point_b && currentLine.point_b == runeLine.point_a))
                             {
                                 lineFound = true;
+                                lineCount--;
                             }
                         }
 
@@ -206,7 +208,7 @@ public class RuneDraw : MonoBehaviour
                         }
                     }
 
-                    if (runeMatch)
+                    if (runeMatch && lineCount <= 0)
                     {
                         if(GameManager.Instance.player)
                         {
