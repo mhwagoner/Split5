@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class CreateGameManager : MonoBehaviour
 {
     private bool newRound = false;
+    [SerializeField] private bool runTimer = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -23,7 +24,7 @@ public class CreateGameManager : MonoBehaviour
         GameManager.Instance.gameRunner = this;
         GameManager.Instance.onTimeExpire += StartReduceTimescale;
 
-        StartCoroutine(GameManager.Instance.Timer());
+        if(runTimer) StartCoroutine(GameManager.Instance.Timer());
     }
 
     private IEnumerator StartGame()
