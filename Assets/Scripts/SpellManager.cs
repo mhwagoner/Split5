@@ -74,7 +74,7 @@ public class Spell
 
     public bool TryCastForward(Entity caster, out RaycastHit hit)
     {
-        return Physics.Raycast(caster.gridPosition + new Vector3(0.5f, 0.5f, 0.5f), Quaternion.Euler(new Vector3(0, caster.rotation * 90f, 0)) * Vector3.forward, out hit, 1f);
+        return Physics.Raycast(caster.gridPosition + new Vector3(0.5f, 0.0f, 0.5f), Quaternion.Euler(new Vector3(0, caster.rotation * 90f, 0)) * Vector3.forward * 0.5f, out hit, 1f);
     }
 }
 
