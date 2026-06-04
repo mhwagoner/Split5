@@ -18,6 +18,7 @@ public class SpellManager : MonoBehaviour
         {
             new Flame(),
             new Shock(),
+            new Splash(),
             new Freeze(),
             new Breeze(),
             new Translate(),
@@ -104,6 +105,17 @@ public class Shock : Spell
             new Rune( new RuneLine[] { new RuneLine(0, 1, -1, 1), new RuneLine(-1, 1, -1, 0), new RuneLine(-1, 0, 0, 0), new RuneLine(0, 0, 1, 0), new RuneLine(1, 0, 1, -1), new RuneLine(1, -1, 0, -1), } )
             } );
         damage = new(Damage.Type.LIGHTNING, 1);
+    }
+}
+
+public class Splash : Spell
+{
+    public Splash()
+    {
+        runes = new List<Rune>(new Rune[] {
+            new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, 1), new RuneLine(1, 1, 1, 0), } )
+            });
+        damage = new(Damage.Type.WATER, 1);
     }
 }
 

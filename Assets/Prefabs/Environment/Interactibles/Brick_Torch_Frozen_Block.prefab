@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8625415183360940997}
   - component: {fileID: 3035185838906152056}
   - component: {fileID: 1233496571094204429}
+  - component: {fileID: 403314950892543165}
   m_Layer: 0
   m_Name: Brick_Torch_Frozen_Block
   m_TagString: Untagged
@@ -112,3 +113,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &403314950892543165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817270754060956154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6dbc20e63968404b8c6e3cd9ae0ccd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Torch
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 0
+  maxHp: 1
+  torchLit: {fileID: 2100000, guid: fc8b562826728c344ad0fbab61b094e0, type: 2}
+  torchUnlit: {fileID: 2100000, guid: 36e42116cfa073f4890b6d316b9a4a66, type: 2}
+  torchFreeze: {fileID: 2100000, guid: 9ee9a2b9cdcea6c4e9294646f0e3d1a9, type: 2}
+  state: 2
+  torchLitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  torchUnlitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  torchFreezeEvent:
+    m_PersistentCalls:
+      m_Calls: []

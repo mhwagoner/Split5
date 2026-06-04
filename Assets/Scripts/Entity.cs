@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
     public bool turn = false;
     public int rotation = 0; // most likely unused besides player
     protected Vector3 positionOffset; // offset from grid position for visuals
-    protected bool canBeAttacked = true;
+    [SerializeField] protected bool canBeAttacked = true;
     [SerializeField] protected int maxHp = 1;
     public int hp { get; protected set; }
     [SerializeField] protected Damage baseAttack;
