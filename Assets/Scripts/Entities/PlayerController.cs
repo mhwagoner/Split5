@@ -27,6 +27,7 @@ public class PlayerController : Creature
         GameManager.Instance.player = this;
         StartCoroutine(RunRotationQueue());
         GameManager.Instance.runeDraw.onSpellCast += QueueCast;
+        onTakeDamage += GameManager.Instance.UpdateHealthUI;
     }
 
     private void Update()
@@ -152,7 +153,5 @@ public class PlayerController : Creature
     public override void TakeDamage(Damage damage)
     {
         base.TakeDamage(damage);
-        print(damage.value);
-        print(hp);
     }
 }

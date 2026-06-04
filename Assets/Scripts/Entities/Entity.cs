@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
     public int rotation = 0; // most likely unused besides player
     protected Vector3 positionOffset; // offset from grid position for visuals
     [SerializeField] protected bool canBeAttacked = true;
-    [SerializeField] protected int maxHp = 1;
+    [SerializeField] public int maxHp = 1;
     public int hp { get; protected set; }
     [SerializeField] protected Damage[] weaknesses;
     [SerializeField] protected Damage baseAttack = new(Damage.Type.PHYSICAL, 1);
@@ -21,6 +21,8 @@ public class Entity : MonoBehaviour
     protected float MOVE_SPEED = 10.0f;
 
     public AudioSource audioSource;
+
+    public Action<int, int> onTakeDamage;
 
     public void Start()
     {
@@ -147,6 +149,11 @@ public class Entity : MonoBehaviour
         else
         {
             // immune text
+        }
+
+        if(value > 0)
+        {
+            onTakeDamage?.Invoke(hp, maxHp);
         }
 
         if(hp <= 0)

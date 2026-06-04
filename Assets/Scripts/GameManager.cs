@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class GameManager
@@ -30,6 +32,9 @@ public class GameManager
 	public Coroutine gameCoroutine;
     public bool playerTurn = true;
 	public bool runGameLogic = true;
+	public string textlog;
+	public TextMeshProUGUI textlogMesh;
+	public HealthUI[] healthImages = new HealthUI[3];
 
     public static GameManager theInstance { get; private set; }
     public static GameManager Instance
@@ -123,4 +128,12 @@ public class GameManager
         player.audioSource.PlayOneShot(player.clockTick);
         TimeExpire();
     }
+
+	public void UpdateHealthUI(int health, int max_health)
+	{
+		for(int i = 0; i < (max_health / 3); i++)
+		{
+			healthImages[i].UpdateHealthSprite(Math.Clamp(health - (i * 3), 0, 3));
+        }
+	}
 }
