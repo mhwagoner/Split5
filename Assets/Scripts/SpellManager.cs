@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEditor.FilePathAttribute;
 
 public class SpellManager : MonoBehaviour
@@ -25,7 +26,9 @@ public class SpellManager : MonoBehaviour
             new Shine(),
             new Flip(),
             new Rock(),
-            new Rainbow()
+            new Rainbow(),
+            new SecretYume(),
+            new SecretLodge()
         });
         GameManager.Instance.spellManager = this;
     }
@@ -253,6 +256,6 @@ public class SecretLodge : Spell
 
     public override void Cast(Entity caster)
     {
-        // go to scene
+        SceneManager.LoadScene("Lodge");
     }
 }
