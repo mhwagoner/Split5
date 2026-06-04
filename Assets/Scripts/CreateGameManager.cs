@@ -23,8 +23,7 @@ public class CreateGameManager : MonoBehaviour
         GameManager.Instance.gameRunner = this;
         GameManager.Instance.onTimeExpire += StartReduceTimescale;
 
-        //StartCoroutine(RoundEnd());
-        StartCoroutine(GameManager.Instance.Timer());
+        //StartCoroutine(GameManager.Instance.Timer());
     }
 
     private IEnumerator StartGame()
