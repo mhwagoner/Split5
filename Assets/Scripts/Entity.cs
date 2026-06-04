@@ -39,7 +39,7 @@ public class Entity : MonoBehaviour
         if (!teleport)
         {
             RaycastHit hit;
-            if (Physics.Raycast(gridPosition + new Vector3(0.5f, 0.5f, 0.5f), newPosition - gridPosition, out hit, 1f))
+            if (Physics.Raycast(gridPosition + new Vector3(0.5f, 0.0f, 0.5f), newPosition - gridPosition, out hit, 0.5f))
             {
                 if (hit.transform.gameObject.CompareTag("Enemy"))
                 {
@@ -49,7 +49,7 @@ public class Entity : MonoBehaviour
             }
             else
             {
-                if (Physics.Raycast(newPosition + new Vector3(0.5f, 0.5f, 0.5f), Vector3.down, 1f))
+                if (Physics.Raycast(newPosition + new Vector3(0.5f, 0.0f, 0.5f), Vector3.down, 1f))
                 {
                     gridPosition = newPosition;
                     movementQueue.Enqueue(new Movement(newPosition, false));
