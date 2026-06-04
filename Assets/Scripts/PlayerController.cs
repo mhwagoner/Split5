@@ -15,6 +15,8 @@ public class PlayerController : Creature
     private const float ROTATION_SPEED = 700f;
     private Spell queueSpell = null;
 
+    private int queueRotation = 0;
+
     private void Start()
     {
         base.Start();
@@ -25,13 +27,14 @@ public class PlayerController : Creature
 
     private void Update()
     {
-        
+        if(turnAction.ToInputAction().WasPressedThisFrame())
+        {
+            queueRotation = Mathf.RoundToInt(turnAction.ToInputAction().ReadValue<float>());
+        }
     }
 
     public override void TurnUpdate()
     {
-        base.TurnUpdate();
-
         if(queueSpell != null)
         {
             queueSpell.Cast(this);
@@ -43,6 +46,20 @@ public class PlayerController : Creature
         Input();
     }
 
+    public override IEnumerator RunTurn()
+    {
+        StartTurn();
+
+        while (turn)
+        {
+            TurnUpdate();
+
+            yield return new WaitForEndOfFrame(); // dont wait frame if action taken
+        }
+
+        yield break;
+    }
+
     private void Input()
     {
         // DEBUG CHANGE SPACE TO SKIP TURN
@@ -52,15 +69,12 @@ public class PlayerController : Creature
             return;
         }
 
-        if (turnAction.ToInputAction().WasPressedThisFrame())
+        if (queueRotation != 0)
         {
-            int turnInput = Mathf.CeilToInt(turnAction.ToInputAction().ReadValue<float>());
-
-            if (turnInput != 0)
-            {
-                int newRotation = rotation + turnInput;
-                Rotate(ref newRotation);
-            }
+            int turnInput = queueRotation;
+            int newRotation = rotation + queueRotation;
+            Rotate(ref newRotation);
+            queueRotation = 0;
         }
 
         if (moveAction.ToInputAction().WasPressedThisFrame())
@@ -113,5 +127,22 @@ public class PlayerController : Creature
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * ROTATION_SPEED);
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public override void EndTurn()
+    {
+        base.EndTurn();
+    }
+
+    public override void OnDeath()
+    {
+        GameManager.Instance.PlayerDeath();
+    }
+
+    public override void TakeDamage(Damage damage)
+    {
+        base.TakeDamage(damage);
+        print(damage.value);
+        print(hp);
     }
 }

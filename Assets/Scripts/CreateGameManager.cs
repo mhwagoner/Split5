@@ -27,7 +27,7 @@ public class CreateGameManager : MonoBehaviour
     private IEnumerator StartGame()
     {
         yield return new WaitForEndOfFrame();
-        StartCoroutine(GameManager.Instance.RunGame());
+        GameManager.Instance.gameCoroutine = StartCoroutine(GameManager.Instance.RunGame());
     }
 
     // Update is called once per frame

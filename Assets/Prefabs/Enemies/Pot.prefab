@@ -70,7 +70,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Creature
   gridPosition: {x: 0, y: 0, z: 0}
   turn: 0
-  maxHp: 1
+  rotation: 0
+  canBeAttacked: 1
+  maxHp: 2
+  weaknesses:
+  - value: 100
+    type: 1
+  baseAttack:
+    value: 1
+    type: 0
 --- !u!114 &8122275614905360403
 MonoBehaviour:
   m_ObjectHideFlags: 0

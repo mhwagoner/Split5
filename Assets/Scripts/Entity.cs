@@ -12,12 +12,13 @@ public class Entity : MonoBehaviour
     [SerializeField] protected bool canBeAttacked = true;
     [SerializeField] protected int maxHp = 1;
     public int hp { get; protected set; }
-    [SerializeField] protected Damage baseAttack;
+    [SerializeField] protected Damage[] weaknesses;
+    [SerializeField] protected Damage baseAttack = new(Damage.Type.PHYSICAL, 1);
 
     // REPLACE WITH ACTION QUEUE
     protected Queue<int> rotationQueue;
     protected Queue<Movement> movementQueue;
-    protected const float MOVE_SPEED = 10.0f;
+    protected float MOVE_SPEED = 10.0f;
 
     public void Start()
     {
@@ -31,7 +32,7 @@ public class Entity : MonoBehaviour
 
     public virtual void TurnUpdate()
     {
-        //yield break;
+        EndTurn();
     }
 
     public virtual bool Move(Vector3Int newPosition, bool instant = false, bool teleport = false)
@@ -41,9 +42,9 @@ public class Entity : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(gridPosition + new Vector3(0.5f, 0.0f, 0.5f), newPosition - gridPosition, out hit, 0.5f))
             {
-                if (hit.transform.gameObject.CompareTag("Enemy"))
+                if (hit.transform.TryGetComponent<Entity>(out Entity entity))
                 {
-                    Attack(baseAttack, hit.transform.GetComponent<Entity>());
+                    Attack(baseAttack, entity);
                 }
                 movementQueue.Enqueue(new Movement(newPosition, true));
                 return false;
@@ -86,15 +87,18 @@ public class Entity : MonoBehaviour
         rotationQueue.Enqueue(rotation);
     }
 
-    public IEnumerator RunTurn()
+    public virtual IEnumerator RunTurn()
     {
         StartTurn();
 
         while (turn)
         {
             TurnUpdate();
-            yield return new WaitForEndOfFrame();
+
+            //if (name == "Player") yield return new WaitForEndOfFrame(); // dont wait frame if action taken
         }
+
+        yield break;
     }
 
     public virtual void StartTurn()
@@ -109,12 +113,38 @@ public class Entity : MonoBehaviour
 
     public virtual void Attack(Damage damage, Entity target)
     {
-        target.TakeDamage(damage);
+        if (target.canBeAttacked)
+        {
+            target.TakeDamage(damage);
+        }
     }
 
     public virtual void TakeDamage(Damage damage)
     {
-        hp -= damage.value;
+        int value = damage.value;
+
+        for(int i = 0; i < weaknesses.Length; i++)
+        {
+            if (weaknesses[i].type == damage.type)
+            {
+                value *= weaknesses[i].value;
+            }
+        }
+
+        hp -= value;
+
+        if(value == damage.value)
+        {
+            // normal hit text
+        }
+        else if(value > damage.value)
+        {
+            // supereffective text
+        }
+        else
+        {
+            // immune text
+        }
 
         if(hp <= 0)
         {

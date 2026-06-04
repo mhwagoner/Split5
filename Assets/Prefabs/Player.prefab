@@ -251,7 +251,8 @@ MonoBehaviour:
   turn: 0
   rotation: 0
   canBeAttacked: 1
-  maxHp: 0
+  maxHp: 9
+  weaknesses: []
   baseAttack:
     value: 1
     type: 0

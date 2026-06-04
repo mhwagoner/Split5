@@ -71,7 +71,14 @@ MonoBehaviour:
   gridPosition: {x: 0, y: 0, z: 0}
   turn: 0
   rotation: 0
-  maxHp: 1
+  canBeAttacked: 1
+  maxHp: 2
+  weaknesses:
+  - value: 666
+    type: 8
+  baseAttack:
+    value: 1
+    type: 0
 --- !u!114 &1930658654230285828
 MonoBehaviour:
   m_ObjectHideFlags: 0
