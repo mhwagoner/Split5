@@ -12,7 +12,7 @@ public class PlayerController : Creature
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference turnAction;
     [SerializeField] private InputActionReference skipAction;
-    private const float ROTATION_SPEED = 700f;
+    public const float ROTATION_SPEED = 700f;
     private Spell queueSpell = null;
 
     private int queueRotation = 0;
@@ -26,6 +26,7 @@ public class PlayerController : Creature
 
         GameManager.Instance.player = this;
         StartCoroutine(RunRotationQueue());
+        GameManager.Instance.runeDraw.onSpellCast += QueueCast;
     }
 
     private void Update()

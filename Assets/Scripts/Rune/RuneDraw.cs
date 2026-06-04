@@ -41,14 +41,17 @@ public class RuneDraw : MonoBehaviour
 
     private const int BRUSH_SIZE = 4;
 
-    //public Action<Rune> cast;
+    public Action<Spell> onSpellCast;
     [SerializeField] private bool writeToFile = false;
+
+    private void Awake()
+    {
+        GameManager.Instance.runeDraw = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameManager.Instance.runeDraw = this;
-
         foreach(RunePoint point in runePoints)
         {
             point.onPointerEnter += PointEntered;
@@ -215,11 +218,7 @@ public class RuneDraw : MonoBehaviour
 
                     if (runeMatch && lineCount <= 0)
                     {
-                        if(GameManager.Instance.player)
-                        {
-                            GameManager.Instance.player.QueueCast(spell);
-                            print(spell.GetType().Name);
-                        }
+                        onSpellCast?.Invoke(spell);
                         return true;
                     }
                 }
