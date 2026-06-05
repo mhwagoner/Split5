@@ -31,7 +31,7 @@ public class Slime : Creature
                 GameManager.Instance.UpdateTextlog("Slime became red!");
                 weaknesses.Add(new Damage(Damage.Type.WATER, 4));
                 weaknesses.Add(new Damage(Damage.Type.FIRE, 0));
-                baseAttack = new Damage(Damage.Type.FIRE, 1);
+                baseAttack = new Damage(Damage.Type.FIRE, baseAttack.value);
                 return true;
             }
             else if (spell is Freeze)
@@ -42,7 +42,7 @@ public class Slime : Creature
                 GameManager.Instance.UpdateTextlog("Slime became light blue!");
                 weaknesses.Add(new Damage(Damage.Type.FIRE, 4));
                 weaknesses.Add(new Damage(Damage.Type.ICE, 0));
-                baseAttack = new Damage(Damage.Type.ICE, 1);
+                baseAttack = new Damage(Damage.Type.ICE, baseAttack.value);
                 return true;
             }
             else if (spell is Shock)
@@ -53,7 +53,7 @@ public class Slime : Creature
                 GameManager.Instance.UpdateTextlog("Slime became yellow!");
                 weaknesses.Add(new Damage(Damage.Type.ROCK, 4));
                 weaknesses.Add(new Damage(Damage.Type.LIGHTNING, 0));
-                baseAttack = new Damage(Damage.Type.LIGHTNING, 1);
+                baseAttack = new Damage(Damage.Type.LIGHTNING, baseAttack.value);
                 return true;
             }
             else if (spell is Splash)
@@ -64,7 +64,7 @@ public class Slime : Creature
                 GameManager.Instance.UpdateTextlog("Slime became blue!");
                 weaknesses.Add(new Damage(Damage.Type.LIGHTNING, 4));
                 weaknesses.Add(new Damage(Damage.Type.WATER, 0));
-                baseAttack = new Damage(Damage.Type.WATER, 1);
+                baseAttack = new Damage(Damage.Type.WATER, baseAttack.value);
                 return true;
             }
         }

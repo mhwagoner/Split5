@@ -5,7 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.Collections.Unicode;
 
 public class RuneDraw : MonoBehaviour
 {
@@ -187,42 +189,66 @@ public class RuneDraw : MonoBehaviour
 
     public bool CheckForRune() // should cast spell if valid
     {
-        if (currentLines.Count > 0)
+        if(GameManager.Instance.gameLost)
+        {
+            Rune rune = new Rune(new RuneLine[] { new RuneLine(-1, 1, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, 1), });
+            if(CompareRune(rune))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                GameManager.Instance.Reset();
+                return true;
+            }
+            rune = new Rune(new RuneLine[] { new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, 1), new RuneLine(1, 1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, 1), new RuneLine(-1, 1, -1, -1), });
+            if (CompareRune(rune))
+            {
+                GameManager.Instance.Reset();
+                SceneManager.LoadScene("MainMenu");
+                return true;
+            }
+        }
+        else if (currentLines.Count > 0)
         {
             foreach (Spell spell in GameManager.Instance.spellManager.spells)
             {
                 foreach (Rune rune in spell.runes)
                 {
-                    bool runeMatch = true;
-                    int lineCount = rune.lines.Count;
-                    foreach (RuneLine currentLine in currentLines)
-                    {
-                        bool lineFound = false;
-
-                        foreach (RuneLine runeLine in rune.lines)
-                        {
-                            // check both a -> b and b <- a
-                            if ((currentLine.point_a == runeLine.point_a && currentLine.point_b == runeLine.point_b) || (currentLine.point_a == runeLine.point_b && currentLine.point_b == runeLine.point_a))
-                            {
-                                lineFound = true;
-                                lineCount--;
-                            }
-                        }
-
-                        if (!lineFound)
-                        {
-                            runeMatch = false;
-                            break;
-                        }
-                    }
-
-                    if (runeMatch && lineCount <= 0)
+                    if (CompareRune(rune))
                     {
                         onSpellCast?.Invoke(spell);
                         return true;
                     }
                 }
             }
+        }
+        return false;
+    }
+
+    public bool CompareRune(Rune rune)
+    {
+        bool runeMatch = true;
+        int lineCount = rune.lines.Count;
+        foreach (RuneLine currentLine in currentLines)
+        {
+            bool lineFound = false;
+
+            foreach (RuneLine runeLine in rune.lines)
+            {
+                // check both a -> b and b <- a
+                if ((currentLine.point_a == runeLine.point_a && currentLine.point_b == runeLine.point_b) || (currentLine.point_a == runeLine.point_b && currentLine.point_b == runeLine.point_a))
+                {
+                    lineFound = true;
+                    lineCount--;
+                }
+            }
+
+            if (!lineFound)
+            {
+                return false;
+            }
+        }
+        if (lineCount <= 0)
+        {
+            return true;
         }
         return false;
     }

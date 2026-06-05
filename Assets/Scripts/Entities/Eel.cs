@@ -17,12 +17,13 @@ public class Eel : Creature
         {
             if(spell is Freeze)
             {
-                sprite.color = Color.aliceBlue;
+                sprite.color = Color.darkBlue;
                 frozen = true;
                 base.OnSpellHit(spell, caster);
                 weaknesses.Add(new Damage(Damage.Type.FIRE, 20));
                 weaknesses.Add(new Damage(Damage.Type.ICE, 0));
                 canAct = false;
+                GameManager.Instance.UpdateTextlog("Eel became frozen!");
                 return true;
             }
         }

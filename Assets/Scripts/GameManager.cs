@@ -33,7 +33,8 @@ public class GameManager
 	public Coroutine gameCoroutine;
     public bool playerTurn = true;
 	public bool runGameLogic = true;
-	public string textlog = "You awaken in the dungeon.";
+	public bool gameLost = false;
+    public string textlog = "You awaken in the dungeon.";
 	public TextMeshProUGUI textlogMesh;
 	public HealthUI[] healthImages = new HealthUI[3];
 
@@ -96,6 +97,11 @@ public class GameManager
 		runGameLogic = false;
     }
 
+	public void OnLose()
+	{
+		gameLost = true;
+	}
+
 	public void InitiatePositions()
 	{
         player.gridPosition = GameManager.Instance.grid.WorldToCell(player.transform.position);
@@ -145,5 +151,10 @@ public class GameManager
 		{
 			textlogMesh.text = textlog;
 		}
+	}
+
+	public void Reset()
+	{
+		theInstance = null;
 	}
 }
