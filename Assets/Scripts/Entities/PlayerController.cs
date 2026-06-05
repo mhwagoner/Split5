@@ -19,6 +19,12 @@ public class PlayerController : Creature
 
     [Header("Sound Effects")]
     [SerializeField] public AudioClip clockTick;
+    private int stepCounter = 0;
+    [SerializeField] public AudioClip stepSFX1;
+    [SerializeField] public AudioClip stepSFX2;
+    [SerializeField] public AudioClip stepSFX3;
+    [SerializeField] public AudioClip stepSFX4;
+    [SerializeField] public AudioClip hitSFX;
 
     private void Start()
     {
@@ -93,6 +99,23 @@ public class PlayerController : Creature
 
             if (movement != Vector2Int.zero)
             {
+                stepCounter = (stepCounter + 1) % 4;
+                switch (stepCounter)
+                {
+                    case 0:
+                        audioSource.PlayOneShot(stepSFX1, 1.2f);
+                        break;
+                    case 1:
+                        audioSource.PlayOneShot(stepSFX2, 1.2f);
+                        break;
+                    case 2:
+                        audioSource.PlayOneShot(stepSFX3, 1.2f);
+                        break;
+                    case 3:
+                        audioSource.PlayOneShot(stepSFX4, 1.2f);
+                        break;
+                }
+
                 if (movement.x != 0 && movement.y != 0)
                 {
                     movement.x = 0; // vertical movement prioritized
@@ -154,4 +177,11 @@ public class PlayerController : Creature
     {
         base.TakeDamage(damage);
     }
+
+    public override void Attack(Damage damage, Entity target)
+    {
+        base.Attack(damage, target);
+        audioSource.PlayOneShot(hitSFX);
+    }
 }
+
