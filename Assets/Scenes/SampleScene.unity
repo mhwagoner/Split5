@@ -500,6 +500,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: 'Flip Spell. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: spellIcon
       value: 
       objectReference: {fileID: 21300000, guid: 6636869bb71abf64aa6d844ce9f5d7b8, type: 3}
@@ -3149,6 +3153,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: Turn flame to ice.
+      objectReference: {fileID: 0}
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: translated
       value: 0
@@ -5916,6 +5924,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: 'Breeze Spell. '
+      objectReference: {fileID: 0}
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: spellIcon
       value: 
@@ -15285,6 +15297,96 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
   m_PrefabInstance: {fileID: 493956915}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &494475209
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1366178897}
+    m_Modifications:
+    - target: {fileID: 3557877298763347575, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: torchRainbowEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557877298763347575, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: torchRainbowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557877298763347575, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: torchRainbowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1111141408}
+    - target: {fileID: 3557877298763347575, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: torchRainbowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557877298763347575, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: torchRainbowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557877298763347575, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: torchRainbowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557877298763347575, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: torchRainbowEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442451331637795406, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_Name
+      value: Brick_Torch_Unlit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+--- !u!4 &494475210 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5995177831019487696, guid: 121c22d49f60d10439967f245faf2b14, type: 3}
+  m_PrefabInstance: {fileID: 494475209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &496823091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17951,6 +18053,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: 'Translate Spell. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: spellIcon
       value: 
       objectReference: {fileID: 21300000, guid: 83262d512c5c7a04aafbe5e0e0c5e20b, type: 3}
@@ -18149,6 +18255,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: Trump dies IRL???
+      objectReference: {fileID: 0}
     - target: {fileID: 2253443996615629506, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: m_Name
       value: Sign_Block
@@ -19319,68 +19429,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
   m_PrefabInstance: {fileID: 603761427}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &603933513
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1366178897}
-    m_Modifications:
-    - target: {fileID: 800806009178039173, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_Name
-      value: Brick_Block
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 18.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
---- !u!4 &603933514 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
-  m_PrefabInstance: {fileID: 603933513}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &604624419
 PrefabInstance:
@@ -22457,6 +22505,7 @@ Transform:
   - {fileID: 773833871}
   - {fileID: 1068356006}
   - {fileID: 704531392}
+  - {fileID: 769096955}
   m_Father: {fileID: 1872662265}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &691137363
@@ -24616,6 +24665,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
   m_PrefabInstance: {fileID: 767576138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &769096954
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 691137362}
+    m_Modifications:
+    - target: {fileID: 800806009178039173, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_Name
+      value: Brick_Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+--- !u!4 &769096955 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+  m_PrefabInstance: {fileID: 769096954}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &773616522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25368,6 +25479,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: 'Rock Spell. '
+      objectReference: {fileID: 0}
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: spellIcon
       value: 
@@ -28759,6 +28874,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 9028333444060078687, guid: b3982051277e670478b121ee710943ae, type: 3}
   m_PrefabInstance: {fileID: 922443578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &922935831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 800806009178039173, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
+  m_PrefabInstance: {fileID: 1149679284}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &927200154
 PrefabInstance:
@@ -34066,6 +34186,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6993549162235672410, guid: a29f69065884d7844902565e96eed515, type: 3}
   m_PrefabInstance: {fileID: 1107101117}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1111141408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1330941942814155978, guid: 28bdb9c3cf12b32409b3abc0664d0946, type: 3}
+  m_PrefabInstance: {fileID: 1152727959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1115764655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35946,6 +36071,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: Rainbow Spell.
+      objectReference: {fileID: 0}
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: spellIcon
       value: 
@@ -38663,6 +38792,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: 'Flame Spell. '
+      objectReference: {fileID: 0}
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: spellIcon
       value: 
@@ -41733,7 +41866,7 @@ Transform:
   - {fileID: 369416211}
   - {fileID: 1703890299}
   - {fileID: 1001408364}
-  - {fileID: 603933514}
+  - {fileID: 494475210}
   m_Father: {fileID: 1872662265}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1366178898
@@ -60116,6 +60249,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 528581359207586982, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
+      propertyPath: torchFreezeEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528581359207586982, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
+      propertyPath: torchFreezeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 528581359207586982, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
+      propertyPath: torchFreezeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 922935831}
+    - target: {fileID: 528581359207586982, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
+      propertyPath: torchFreezeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 528581359207586982, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
+      propertyPath: torchFreezeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 528581359207586982, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
+      propertyPath: torchFreezeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 528581359207586982, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
+      propertyPath: torchFreezeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4341949324636321674, guid: 0cd7c6c25516ddf4fb0ec00abdfdc9ea, type: 3}
       propertyPath: m_Name
       value: Brick_Torch_Lit_Block
@@ -60314,6 +60475,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: 'Freeze Spell. '
+      objectReference: {fileID: 0}
     - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: spellIcon
       value: 

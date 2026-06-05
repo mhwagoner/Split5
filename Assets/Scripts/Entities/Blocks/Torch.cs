@@ -18,6 +18,7 @@ public class Torch : Entity
     [SerializeField] private UnityEvent torchLitEvent;
     [SerializeField] private UnityEvent torchUnlitEvent;
     [SerializeField] private UnityEvent torchFreezeEvent;
+    [SerializeField] private UnityEvent torchRainbowEvent;
 
     public void Start()
     {
@@ -43,6 +44,11 @@ public class Torch : Entity
                     meshRenderer.material = torchFreeze;
                     state = State.FREEZE;
                     torchFreezeEvent.Invoke();
+                    return true;
+                }
+                else if(spell is Rainbow) //very stupid temporary code because Im too lazy to make rainbow script
+                {
+                    torchRainbowEvent.Invoke();
                     return true;
                 }
                 break;
