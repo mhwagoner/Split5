@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -85,9 +86,10 @@ public class GameManager
 
 	public void PlayerDeath()
 	{
-		gameRunner.StopCoroutine(Timer());
-		runGameLogic = false;
-		OnLose();
+		gameRunner.StopAllCoroutines();
+        TimeExpire();
+        player.audioSource.Stop();
+        OnLose();
 
     }
 
@@ -153,6 +155,13 @@ public class GameManager
 			textlogMesh.text = textlog;
 		}
 	}
+
+	public IEnumerator GoToSceneDelay(float delay, string scene)
+	{
+		yield return new WaitForSecondsRealtime(delay);
+		SceneManager.LoadScene(scene);
+        GameManager.Instance.Reset();
+    }
 
 	public void Reset()
 	{

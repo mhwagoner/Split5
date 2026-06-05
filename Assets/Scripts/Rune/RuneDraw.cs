@@ -196,15 +196,17 @@ public class RuneDraw : MonoBehaviour
             Rune rune = new Rune(new RuneLine[] { new RuneLine(-1, 1, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, 1), });
             if(CompareRune(rune))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                GameManager.Instance.Reset();
+                // Reset scene
+                GameManager.Instance.player.audioSource.PlayOneShot(GameManager.Instance.player.clockTickFast);
+                StartCoroutine(GameManager.Instance.GoToSceneDelay(0.6f, SceneManager.GetActiveScene().name));
                 return true;
             }
             rune = new Rune(new RuneLine[] { new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, 1), new RuneLine(1, 1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, 1), new RuneLine(-1, 1, -1, -1), });
             if (CompareRune(rune))
             {
-                GameManager.Instance.Reset();
-                SceneManager.LoadScene("MainMenu");
+                // Return to title
+                GameManager.Instance.player.audioSource.PlayOneShot(GameManager.Instance.player.clockTickFast);
+                StartCoroutine(GameManager.Instance.GoToSceneDelay(0.6f, "MainMenu"));
                 return true;
             }
         }

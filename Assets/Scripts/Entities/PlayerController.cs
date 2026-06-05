@@ -20,6 +20,7 @@ public class PlayerController : Creature
 
     [Header("Sound Effects")]
     [SerializeField] public AudioClip clockTick;
+    [SerializeField] public AudioClip clockTickFast;
     private int stepCounter = 0;
     [SerializeField] public AudioClip stepSFX1;
     [SerializeField] public AudioClip stepSFX2;

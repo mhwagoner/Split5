@@ -72,15 +72,17 @@ MonoBehaviour:
   turn: 0
   rotation: 0
   canBeAttacked: 1
-  maxHp: 4
+  maxHp: 5
   weaknesses:
-  - value: 2
+  - value: 5
     type: 5
-  - value: 4
+  - value: 2
     type: 3
   baseAttack:
-    value: 1
+    value: 2
     type: 0
+  audioSource: {fileID: 0}
+  canAct: 1
 --- !u!114 &8122275614905360403
 MonoBehaviour:
   m_ObjectHideFlags: 0

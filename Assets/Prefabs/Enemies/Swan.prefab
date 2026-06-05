@@ -81,7 +81,7 @@ MonoBehaviour:
   - value: 4
     type: 7
   baseAttack:
-    value: 1
+    value: 2
     type: 0
   audioSource: {fileID: 0}
   canAct: 1

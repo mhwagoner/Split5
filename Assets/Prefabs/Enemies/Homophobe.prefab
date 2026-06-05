@@ -77,8 +77,10 @@ MonoBehaviour:
   - value: 666
     type: 8
   baseAttack:
-    value: 1
+    value: 3
     type: 0
+  audioSource: {fileID: 0}
+  canAct: 1
 --- !u!114 &1930658654230285828
 MonoBehaviour:
   m_ObjectHideFlags: 0

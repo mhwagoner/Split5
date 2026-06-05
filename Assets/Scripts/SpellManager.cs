@@ -204,6 +204,18 @@ public class Translate : Spell
             });
         name = "Translate";
     }
+
+    public override void Cast(Entity caster)
+    {
+        if(TryCastForward(caster, out RaycastHit hit))
+        {
+            if(hit.collider.TryGetComponent<Sign>(out Sign sign))
+            {
+                sign.translated = true;
+            }
+        }
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rainbowSFX, GameManager.Instance.spellManager.sfx_volume);
+    }
 }
 
 public class Shine : Spell
@@ -238,12 +250,6 @@ public class Flip : Spell
         RaycastHit hit;
         if (TryCastForward(caster, out hit))
         { // HIT
-            Entity entity;
-            if (hit.collider.TryGetComponent<Entity>(out entity))
-            {
-                entity.OnSpellHit(this, caster);
-            }
-
             if (hit.collider.TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteRenderer))
             {
                 spriteRenderer.flipY = true;
@@ -251,6 +257,12 @@ public class Flip : Spell
             else
             {
                 hit.collider.gameObject.transform.Rotate(0, 0, 180);
+            }
+
+            Entity entity;
+            if (hit.collider.TryGetComponent<Entity>(out entity))
+            {
+                entity.OnSpellHit(this, caster);
             }
         }
         else

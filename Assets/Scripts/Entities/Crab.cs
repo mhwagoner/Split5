@@ -26,6 +26,7 @@ public class Crab : Creature
                 weaknesses.RemoveAt(0);
                 weaknesses.Add(new Damage(Damage.Type.FIRE, 4));
                 GameManager.Instance.UpdateTextlog("The crab was flipped over!");
+                sprite.flipY = false;
                 return true;
             }
             else
