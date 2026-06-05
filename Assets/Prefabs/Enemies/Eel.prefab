@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7813927556474047088}
   - component: {fileID: 8205940967480658437}
-  - component: {fileID: 6320456237859001338}
   - component: {fileID: 8122275614905360403}
   - component: {fileID: 4268430962275316934}
+  - component: {fileID: 1832967638879736485}
   m_Layer: 0
   m_Name: Eel
   m_TagString: Enemy
@@ -56,27 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75, y: 0.75, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6320456237859001338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2284383668698090271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b966b6103d0eeb4e81da955bd612ebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Creature
-  gridPosition: {x: 0, y: 0, z: 0}
-  turn: 0
-  rotation: 0
-  canBeAttacked: 1
-  maxHp: 1
-  weaknesses: []
-  baseAttack:
-    value: 1
-    type: 3
 --- !u!114 &8122275614905360403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +127,26 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1832967638879736485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2284383668698090271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e066c3a5051fbc8458c461709ae549a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Eel
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 1
+  maxHp: 20
+  weaknesses: []
+  baseAttack:
+    value: 1
+    type: 3
+  audioSource: {fileID: 0}
+  canAct: 1

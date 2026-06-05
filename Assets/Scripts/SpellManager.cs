@@ -57,6 +57,7 @@ public class Spell
 {
     public Damage damage; // unusued for some spell types
     public List<Rune> runes; // RuneDraw is gonna use this, make a script to export runepoints to a formatted txt
+    public string name = "spell";
 
     public Spell()
     {
@@ -105,6 +106,7 @@ public class Flame : Spell
             new Rune( new RuneLine[] { new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 0, 0), } )
         });
         damage = new(Damage.Type.FIRE, 1);
+        name = "Flame";
     }
 
     public override void Cast(Entity caster)
@@ -126,6 +128,7 @@ public class Shock : Spell
             new Rune( new RuneLine[] { new RuneLine(0, 1, -1, 1), new RuneLine(-1, 1, -1, 0), new RuneLine(-1, 0, 0, 0), new RuneLine(0, 0, 1, 0), new RuneLine(1, 0, 1, -1), new RuneLine(1, -1, 0, -1), } )
             } );
         damage = new(Damage.Type.LIGHTNING, 1);
+        name = "Shock";
     }
 
     public override void Cast(Entity caster)
@@ -143,6 +146,7 @@ public class Splash : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, 1), new RuneLine(1, 1, 1, 0), } )
             });
         damage = new(Damage.Type.WATER, 1);
+        name = "Splash";
     }
 
     public override void Cast(Entity caster)
@@ -160,6 +164,7 @@ public class Freeze : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, 1), } )
             });
         damage = new(Damage.Type.ICE, 1);
+        name = "Freeze";
     }
 
     public override void Cast(Entity caster)
@@ -180,6 +185,7 @@ public class Breeze : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, 1), new RuneLine(-1, 1, 0, 1), new RuneLine(0, 1, 1, 1), new RuneLine(1, 1, 1, 0), new RuneLine(1, 0, 0, 0), new RuneLine(0, 0, -1, 0), } )
             });
         damage = new(Damage.Type.WIND, 1);
+        name = "Breeze";
     }
 
     public override void Cast(Entity caster)
@@ -196,6 +202,7 @@ public class Translate : Spell
         runes = new List<Rune>(new Rune[] {
             new Rune( new RuneLine[] { new RuneLine(-1, 1, 0, 1), new RuneLine(0, 1, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, 0, -1), } )
             });
+        name = "Translate";
     }
 }
 
@@ -206,6 +213,7 @@ public class Shine : Spell
         runes = new List<Rune>(new Rune[] {
             new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, -1), new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 1, 0), } )
             });
+        name = "Shine";
     }
 
     public override void Cast(Entity caster)
@@ -221,6 +229,7 @@ public class Flip : Spell
         runes = new List<Rune>(new Rune[] {
             new Rune( new RuneLine[] { new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 1, 0), new RuneLine(1, 0, 1, 1), new RuneLine(1, 1, 0, 1), new RuneLine(0, 1, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, 1), } )
             });
+        name = "Flip";
     }
 
     public override void Cast(Entity caster)
@@ -238,6 +247,7 @@ public class Rock : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, -1, 1, -1), new RuneLine(1, -1, 1, 1), new RuneLine(1, 1, -1, 1), new RuneLine(-1, 1, -1, -1), } )
             });
         damage = new(Damage.Type.ROCK, 1);
+        name = "Rock";
     }
 
     public override void Cast(Entity caster)
@@ -255,6 +265,7 @@ public class Rainbow : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, 1, -1, -1), new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, -1, 1), new RuneLine(-1, 1, -1, -1), new RuneLine(-1, -1, 1, -1), new RuneLine(1, -1, 1, 1), new RuneLine(1, 1, -1, 1), } )
             });
         damage = new(Damage.Type.RAINBOW, 1);
+        name = "Rainbow";
     }
 
     public override void Cast(Entity caster)

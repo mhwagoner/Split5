@@ -3,6 +3,7 @@ using UnityEngine;
 public class Creature : Entity
 {
     private bool attackReadied = false;
+    public bool canAct = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +32,10 @@ public class Creature : Entity
             }
             else
             {
-                Attack();
+                if (canAct)
+                {
+                    Attack();
+                }
             }
         }
         else
@@ -45,6 +49,7 @@ public class Creature : Entity
 
     public virtual void Attack()
     {
+        GameManager.Instance.UpdateTextlog(name + " strikes at you!");
         Move(GameManager.Instance.player.gridPosition);
     }
 

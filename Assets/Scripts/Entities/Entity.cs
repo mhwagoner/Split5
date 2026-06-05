@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -12,7 +13,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected bool canBeAttacked = true;
     [SerializeField] public int maxHp = 1;
     public int hp { get; protected set; }
-    [SerializeField] protected Damage[] weaknesses;
+    [SerializeField] protected List<Damage> weaknesses = new();
     [SerializeField] protected Damage baseAttack = new(Damage.Type.PHYSICAL, 1);
 
     // REPLACE WITH ACTION QUEUE
@@ -128,7 +129,7 @@ public class Entity : MonoBehaviour
     {
         int value = damage.value;
 
-        for(int i = 0; i < weaknesses.Length; i++)
+        for(int i = 0; i < weaknesses.Count; i++)
         {
             if (weaknesses[i].type == damage.type)
             {
@@ -141,14 +142,17 @@ public class Entity : MonoBehaviour
         if(value == damage.value)
         {
             // normal hit text
+            TakeDamageText(value, damage.type, 0);
         }
         else if(value > damage.value)
         {
             // supereffective text
+            TakeDamageText(value, damage.type, 1);
         }
         else
         {
             // immune text
+            TakeDamageText(value, damage.type, 2);
         }
 
         if(value > 0)
@@ -159,6 +163,22 @@ public class Entity : MonoBehaviour
         if(hp <= 0)
         {
             OnDeath();
+        }
+    }
+
+    public virtual void TakeDamageText(int damage, Damage.Type type, int hitType)
+    {
+        switch(hitType)
+        {
+            case 0:
+                GameManager.Instance.UpdateTextlog(name + " takes " + damage + " " + Damage.GetTypeName(type) + " damage!" );
+                break;
+            case 1:
+                GameManager.Instance.UpdateTextlog("It's super effective! " + name + " takes " + damage + " " + Damage.GetTypeName(type) + " damage!");
+                break;
+            case 2:
+                GameManager.Instance.UpdateTextlog(name + " is immune to " + Damage.GetTypeName(type) + " damage!");
+                break;
         }
     }
 
@@ -248,6 +268,13 @@ public class Damage
         ROCK,
         WIND,
         RAINBOW
+    }
+
+    public static string[] typeNames = { "Physical", "Fire", "Grass", "Water", "Ice", "Lighting", "Rock", "Wind", "Rainbow" };
+
+    public static string GetTypeName(Type type)
+    {
+        return typeNames[(int) type];
     }
 
     public Damage(Type type, int value)

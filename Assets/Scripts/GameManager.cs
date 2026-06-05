@@ -33,7 +33,7 @@ public class GameManager
 	public Coroutine gameCoroutine;
     public bool playerTurn = true;
 	public bool runGameLogic = true;
-	public string textlog;
+	public string textlog = "You awaken in the dungeon.";
 	public TextMeshProUGUI textlogMesh;
 	public HealthUI[] healthImages = new HealthUI[3];
 
@@ -136,5 +136,14 @@ public class GameManager
 		{
 			healthImages[i].UpdateHealthSprite(Math.Clamp(health - (i * 3), 0, 3));
         }
+	}
+
+	public void UpdateTextlog(string addedText)
+	{
+		textlog += "\n" + addedText;
+		if (textlogMesh != null)
+		{
+			textlogMesh.text = textlog;
+		}
 	}
 }

@@ -53,6 +53,7 @@ public class PlayerController : Creature
     {
         if(queueSpell != null)
         {
+            GameManager.Instance.UpdateTextlog("You cast " + queueSpell.name + "!");
             queueSpell.Cast(this);
             queueSpell = null;
             EndTurn();
@@ -173,9 +174,20 @@ public class PlayerController : Creature
         GameManager.Instance.PlayerDeath();
     }
 
-    public override void TakeDamage(Damage damage)
+    public override void TakeDamageText(int damage, Damage.Type type, int hitType)
     {
-        base.TakeDamage(damage);
+        switch (hitType)
+        {
+            case 0:
+                GameManager.Instance.UpdateTextlog("You take " + damage + " " + Damage.GetTypeName(type) + " damage!");
+                break;
+            case 1:
+                GameManager.Instance.UpdateTextlog("It's super effective! " + name + " takes " + damage + " " + Damage.GetTypeName(type) + " damage!");
+                break;
+            case 2:
+                GameManager.Instance.UpdateTextlog(name + " is immune to " + Damage.GetTypeName(type) + " damage!");
+                break;
+        }
     }
 
     public override void Attack(Damage damage, Entity target)

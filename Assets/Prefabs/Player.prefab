@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287c6fe379135c4ba95097ae5aeebe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeToGray
+  spriteMaterial: {fileID: 2100000, guid: c61bf3f688f220e47a93c0577f89b407, type: 2}
 --- !u!1 &3283733960732445054
 GameObject:
   m_ObjectHideFlags: 0

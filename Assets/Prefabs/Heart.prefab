@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: c61bf3f688f220e47a93c0577f89b407, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eefb353a8036aa43a406ada86d5a4ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthUI
+  number: 0
   healthSprites:
   - {fileID: 21300000, guid: 26cc8417e5d8c46468ded25a00cb5f77, type: 3}
   - {fileID: 21300000, guid: ac46cd613acf4d34f90f1c6f98b2e65d, type: 3}

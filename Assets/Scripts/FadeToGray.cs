@@ -7,6 +7,11 @@ public class FadeToGray : MonoBehaviour
 {
     private ColorAdjustments color;
 
+    private void Awake()
+    {
+        Shader.SetGlobalFloat("_Saturation", 1f);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,8 +27,8 @@ public class FadeToGray : MonoBehaviour
 
     private void ChangeFade()
     {
+        Shader.SetGlobalFloat("_Saturation", Mathf.Min(Time.timeScale, 1f));
         color.saturation.value = (Mathf.Min(Time.timeScale, 1f) - 1f) * 100f;
         //color.contrast.value = (Mathf.Min(Time.timeScale, 1f) - 1f) * -100f;
-        GetComponentInChildren<Volume>().profile.TryGet<ColorAdjustments>(out color);
     }
 }
