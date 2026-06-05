@@ -74,17 +74,24 @@ public class Creature : Entity
         int value = base.TakeDamage(damage);
         if (value > 0)
         {
-            StartCoroutine(DamageTint());
+            if (value > damage.value)
+            {
+                StartCoroutine(DamageTint(Color.red));
+            }
+            else
+            {
+                StartCoroutine(DamageTint(Color.softRed));
+            }
         }
         return value;
     }
 
-    private IEnumerator DamageTint()
+    private IEnumerator DamageTint(Color color)
     {
         if(spriteRenderer != null)
         {
             Color savedColor = spriteRenderer.color;
-            spriteRenderer.color = Color.softRed;
+            spriteRenderer.color = color;
             yield return new WaitForSecondsRealtime(0.1f);
             spriteRenderer.color = savedColor;
         }
