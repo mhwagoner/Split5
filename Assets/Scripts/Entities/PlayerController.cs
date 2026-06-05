@@ -27,6 +27,8 @@ public class PlayerController : Creature
     [SerializeField] public AudioClip stepSFX3;
     [SerializeField] public AudioClip stepSFX4;
     [SerializeField] public AudioClip hitSFX;
+    [SerializeField] public AudioClip fallSFX;
+    [SerializeField] public AudioClip gongSFX;
 
     private void Start()
     {

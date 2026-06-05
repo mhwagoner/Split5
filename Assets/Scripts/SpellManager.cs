@@ -191,7 +191,7 @@ public class Breeze : Spell
     public override void Cast(Entity caster)
     {
         base.Cast(caster);
-        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.breezeSFX, GameManager.Instance.spellManager.sfx_volume);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.breezeSFX, GameManager.Instance.spellManager.sfx_volume - 5.0f);
     }
 }
 

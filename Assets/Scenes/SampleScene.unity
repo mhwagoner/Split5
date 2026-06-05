@@ -36859,10 +36859,18 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4127811633374885931, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: b153b67024b6e8e4aa1d9d04a098d3eb, type: 3}
     - target: {fileID: 5827942310611879857, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
       propertyPath: hitSFX
       value: 
       objectReference: {fileID: 8300000, guid: 59e64cd5cb329ee4a8cc8dd9a5af4d33, type: 3}
+    - target: {fileID: 5827942310611879857, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
+      propertyPath: gongSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: e1ed499e572017646a1e7a809f563320, type: 3}
     - target: {fileID: 5827942310611879857, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
       propertyPath: stepSFX
       value: 
@@ -76125,18 +76133,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 565423631}
     m_Modifications:
-    - target: {fileID: 562294653571714234, guid: 7c44c6f8f1e647648bb3345392ea9595, type: 3}
-      propertyPath: m_Volume
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 1179725976667644449, guid: 7c44c6f8f1e647648bb3345392ea9595, type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 565423631}
-    - target: {fileID: 1179725976667644449, guid: 7c44c6f8f1e647648bb3345392ea9595, type: 3}
-      propertyPath: writeToFile
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1597611719089541349, guid: 7c44c6f8f1e647648bb3345392ea9595, type: 3}
       propertyPath: m_Name
       value: RuneBase

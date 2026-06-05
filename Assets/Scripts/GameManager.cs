@@ -135,7 +135,7 @@ public class GameManager
         yield return new WaitForSeconds(1.0f);
         // gong
         player.audioSource.Stop();
-        player.audioSource.PlayOneShot(player.clockTick);
+        player.audioSource.PlayOneShot(player.gongSFX);
         TimeExpire();
     }
 
