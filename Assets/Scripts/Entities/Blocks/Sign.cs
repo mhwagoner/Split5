@@ -23,7 +23,7 @@ public class Sign : Entity
         if (translated) {
             onRead?.Invoke(message, spellIcon);
         } else {
-            onRead?.Invoke("You cannot make out the words.", null);
+            onRead?.Invoke("This sign is in a language you don't understand.", null);
         }
         return 0;
     }
