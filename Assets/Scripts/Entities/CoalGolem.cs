@@ -7,9 +7,10 @@ public class CoalGolem : Creature
     [SerializeField] private Sprite golem;
     [SerializeField] private Sprite golemSmoke;
 
-    private void Start()
+    public void Start()
     {
-        base.Start();
+        EntityOnStart();
+        EnemyOnStart();
         sprite = GetComponent<SpriteRenderer>();
     }
 

@@ -189,6 +189,8 @@ public class RuneDraw : MonoBehaviour
 
     public bool CheckForRune() // should cast spell if valid
     {
+        RemoveDuplicateLines();
+
         if(GameManager.Instance.gameLost)
         {
             Rune rune = new Rune(new RuneLine[] { new RuneLine(-1, 1, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, 1), });
@@ -223,9 +225,34 @@ public class RuneDraw : MonoBehaviour
         return false;
     }
 
+    public void RemoveDuplicateLines()
+    {
+        Rune clearRune = new();
+        clearRune.lines = new();
+
+        foreach (RuneLine currentLine in currentLines)
+        {
+            bool lineFound = false;
+            foreach (RuneLine runeLine in clearRune.lines)
+            {
+                // check both a -> b and b <- a
+                if ((currentLine.point_a == runeLine.point_a && currentLine.point_b == runeLine.point_b) || (currentLine.point_a == runeLine.point_b && currentLine.point_b == runeLine.point_a))
+                {
+                    lineFound = true;
+                }
+            }
+
+            if(!lineFound)
+            {
+                clearRune.lines.Add(currentLine);
+            }
+        }
+
+        currentLines = clearRune.lines;
+    }
+
     public bool CompareRune(Rune rune)
     {
-        bool runeMatch = true;
         int lineCount = rune.lines.Count;
         foreach (RuneLine currentLine in currentLines)
         {

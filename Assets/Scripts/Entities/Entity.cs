@@ -27,6 +27,11 @@ public class Entity : MonoBehaviour
 
     public void Start()
     {
+        EntityOnStart();
+    }
+
+    public void EntityOnStart()
+    {
         rotationQueue = new();
         movementQueue = new();
         gridPosition = Vector3Int.FloorToInt(transform.position);

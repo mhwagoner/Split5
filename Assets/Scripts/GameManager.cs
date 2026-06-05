@@ -6,7 +6,6 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class GameManager
 {
@@ -88,6 +87,7 @@ public class GameManager
 	{
 		gameRunner.StopCoroutine(Timer());
 		runGameLogic = false;
+		OnLose();
 
     }
 
@@ -95,6 +95,7 @@ public class GameManager
 	{
 		onTimeExpire?.Invoke();
 		runGameLogic = false;
+		OnLose();
     }
 
 	public void OnLose()
@@ -155,6 +156,8 @@ public class GameManager
 
 	public void Reset()
 	{
+		Time.timeScale = 1f;
+		GameObject.Destroy(gameRunner);
 		theInstance = null;
 	}
 }

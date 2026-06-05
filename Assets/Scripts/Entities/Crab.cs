@@ -7,9 +7,10 @@ public class Crab : Creature
     [SerializeField] private Sprite crab;
     [SerializeField] private Sprite flippedCrab;
 
-    private void Start()
+    public void Start()
     {
-        base.Start();
+        EntityOnStart();
+        EnemyOnStart();
         sprite = GetComponent<SpriteRenderer>();
     }
 

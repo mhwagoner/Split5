@@ -13,9 +13,10 @@ public class Slime : Creature
     private Type type = Type.NEUTRAL;
     private SpriteRenderer sprite;
 
-    private void Start()
+    public void Start()
     {
-        base.Start();
+        EntityOnStart();
+        EnemyOnStart();
         sprite = GetComponent<SpriteRenderer>();
     }
 

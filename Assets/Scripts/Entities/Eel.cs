@@ -5,9 +5,10 @@ public class Eel : Creature
     private bool frozen = false;
     private SpriteRenderer sprite;
 
-    private void Start()
+    public void Start()
     {
-        base.Start();
+        EntityOnStart();
+        EnemyOnStart();
         sprite = GetComponent<SpriteRenderer>();
     }
 

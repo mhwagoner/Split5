@@ -234,8 +234,29 @@ public class Flip : Spell
 
     public override void Cast(Entity caster)
     {
-        base.Cast(caster);
         caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.flipSFX, GameManager.Instance.spellManager.sfx_volume);
+        RaycastHit hit;
+        if (TryCastForward(caster, out hit))
+        { // HIT
+            Entity entity;
+            if (hit.collider.TryGetComponent<Entity>(out entity))
+            {
+                entity.OnSpellHit(this, caster);
+            }
+
+            if (hit.collider.TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteRenderer))
+            {
+                spriteRenderer.flipY = true;
+            }
+            else
+            {
+                hit.collider.gameObject.transform.Rotate(0, 0, 180);
+            }
+        }
+        else
+        { // MISS
+
+        }
     }
 }
 
@@ -278,13 +299,7 @@ public class Rainbow : Spell
             Entity entity;
             if (hit.collider.TryGetComponent<Entity>(out entity))
             {
-                
-            }
-            else
-            {
-                //GameObject block = Object.Instantiate(GameManager.Instance.spellManager.rainbowBlock);
-                //block.transform.position = hit.collider.transform.position;
-                //Object.Destroy(hit.collider.gameObject);
+                entity.OnSpellHit(this, caster);
             }
 
             MeshRenderer meshRenderer;

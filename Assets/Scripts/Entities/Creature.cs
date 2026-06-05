@@ -7,8 +7,13 @@ public class Creature : Entity
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        base.Start();
+        EntityOnStart();
 
+        EnemyOnStart();
+    }
+
+    public void EnemyOnStart()
+    {
         if (CompareTag("Enemy"))
         {
             GameManager.Instance.enemies.Add(this);

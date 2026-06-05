@@ -29,7 +29,7 @@ public class PlayerController : Creature
 
     private void Start()
     {
-        base.Start();
+        EntityOnStart();
 
         GameManager.Instance.player = this;
         StartCoroutine(RunRotationQueue());
