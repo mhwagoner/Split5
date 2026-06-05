@@ -12,6 +12,7 @@ public class GameManager
 {
 	public CreateGameManager gameRunner { get; set; }
     public PlayerController player { get; set; }
+	public SignMessageManager signMessageManager { get; set; }
 	public RuneDraw runeDraw { get; set; }
 	public SpellManager spellManager { get; set; }
     public List<Entity> enemies { get; set; }

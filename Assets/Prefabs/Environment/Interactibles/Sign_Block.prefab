@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3545758709388712172}
   - component: {fileID: 1229253850610754927}
   - component: {fileID: 6468821219389388428}
+  - component: {fileID: 5402590819185653736}
   m_Layer: 0
   m_Name: Sign_Block
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2253443996615629506}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.373247, y: 0, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -112,3 +113,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5402590819185653736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2253443996615629506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d663af7615adc3d4d9194fe531953aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sign
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 1
+  maxHp: 1
+  weaknesses: []
+  baseAttack:
+    value: 1
+    type: 0
+  audioSource: {fileID: 0}
+  translated: 1
+  message: 
+  spellIcon: {fileID: 0}
+  readEvent:
+    m_PersistentCalls:
+      m_Calls: []
