@@ -78,7 +78,7 @@ public class RuneDraw : MonoBehaviour
             {
                 Vector2 hitPos;
                 bool hit = RectTransformUtility.ScreenPointToLocalPointInRectangle(drawImage.rectTransform, Mouse.current.position.value, null, out hitPos);
-                if (Vector2.Distance(hitPos, Vector2.zero) > 50)
+                if (Vector2.Distance(hitPos, Vector2.zero) > 70)
                 {
                     return;
                 }

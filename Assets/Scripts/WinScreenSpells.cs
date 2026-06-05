@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Unity.Collections.Unicode;
-using static UnityEditor.FilePathAttribute;
 
 public class WinScreenSpells : SpellManager
 {
