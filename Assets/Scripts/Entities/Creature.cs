@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class Creature : Entity
 {
     private bool attackReadied = false;
     public bool canAct = true;
+    private SpriteRenderer spriteRenderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +21,7 @@ public class Creature : Entity
             GameManager.Instance.enemies.Add(this);
             MOVE_SPEED = 3.5f;
             BUMP_SPEED = MOVE_SPEED;
+            TryGetComponent<SpriteRenderer>(out spriteRenderer);
         }
     }
 
@@ -64,5 +67,26 @@ public class Creature : Entity
     {
         GameManager.Instance.enemies.Remove(this);
         base.OnDeath();
+    }
+
+    public override int TakeDamage(Damage damage)
+    {
+        int value = base.TakeDamage(damage);
+        if (value > 0)
+        {
+            StartCoroutine(DamageTint());
+        }
+        return value;
+    }
+
+    private IEnumerator DamageTint()
+    {
+        if(spriteRenderer != null)
+        {
+            Color savedColor = spriteRenderer.color;
+            spriteRenderer.color = Color.softRed;
+            yield return new WaitForSecondsRealtime(0.1f);
+            spriteRenderer.color = savedColor;
+        }
     }
 }

@@ -13,8 +13,9 @@ public class Chest : Entity
 
     }
 
-    public override void TakeDamage(Damage damage)
+    public override int TakeDamage(Damage damage)
     {
         SceneManager.LoadScene("WinScreen");
+        return 0;
     }
 }

@@ -227,10 +227,10 @@ public class PlayerController : Creature
         }
     }
 
-    public override void TakeDamage(Damage damage)
+    public override int TakeDamage(Damage damage)
     {
-        base.TakeDamage(damage);
         hitSoundQueue.Enqueue(hurtSFX);
+        return base.TakeDamage(damage);
     }
 
     public override void Attack(Damage damage, Entity target)

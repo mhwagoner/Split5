@@ -132,7 +132,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(Damage damage)
+    public virtual int TakeDamage(Damage damage)
     {
         int value = damage.value;
 
@@ -171,6 +171,8 @@ public class Entity : MonoBehaviour
         {
             OnDeath();
         }
+
+        return value;
     }
 
     public virtual void TakeDamageText(int damage, Damage.Type type, int hitType)

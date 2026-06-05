@@ -18,12 +18,13 @@ public class Sign : Entity
         onRead += GameManager.Instance.signMessageManager.ReadSignUI;
     }
 
-    public override void TakeDamage(Damage damage)
+    public override int TakeDamage(Damage damage)
     {
         if (translated) {
             onRead?.Invoke(message, spellIcon);
         } else {
             onRead?.Invoke("You cannot make out the words.", null);
         }
+        return 0;
     }
 }
