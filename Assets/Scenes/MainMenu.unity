@@ -8589,7 +8589,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -10657,6 +10657,7 @@ MonoBehaviour:
   flipSFX: {fileID: 0}
   rockSFX: {fileID: 0}
   rainbowSFX: {fileID: 0}
+  translateSFX: {fileID: 0}
 --- !u!4 &907795066
 Transform:
   m_ObjectHideFlags: 0
