@@ -47529,6 +47529,10 @@ PrefabInstance:
       propertyPath: message
       value: Teleport Spell. Quickly move yourself to this tile.
       objectReference: {fileID: 0}
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: spellIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: b299f328c134097488bf1b761018bf17, type: 3}
     - target: {fileID: 2253443996615629506, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: m_Name
       value: Sign_Block
@@ -58911,7 +58915,7 @@ RectTransform:
   m_Father: {fileID: 972076803}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -79032,10 +79036,6 @@ PrefabInstance:
     - target: {fileID: 6039547146114724114, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_fontSizeBase
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6039547146114724114, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_Pivot.x

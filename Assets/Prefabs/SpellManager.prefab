@@ -57,3 +57,4 @@ MonoBehaviour:
   flipSFX: {fileID: 8300000, guid: f245a7d965c516949a2091dd1216279a, type: 3}
   rockSFX: {fileID: 8300000, guid: ac49fcea6eaec7a449f593e414877b5b, type: 3}
   rainbowSFX: {fileID: 8300000, guid: 39d1294e13e78034b9e14844cd4c0c84, type: 3}
+  translateSFX: {fileID: 8300000, guid: 3c304787e933d4f4588873995926756e, type: 3}

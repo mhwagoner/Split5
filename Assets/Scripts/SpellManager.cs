@@ -22,6 +22,7 @@ public class SpellManager : MonoBehaviour
     public AudioClip flipSFX;
     public AudioClip rockSFX;
     public AudioClip rainbowSFX;
+    public AudioClip translateSFX;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -217,7 +218,7 @@ public class Translate : Spell
                 sign.translated = true;
             }
         }
-        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rainbowSFX, GameManager.Instance.spellManager.sfx_volume);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.translateSFX, GameManager.Instance.spellManager.sfx_volume - 2.0f);
     }
 }
 

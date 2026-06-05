@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4216307094729928856}
   - component: {fileID: 3384808096932848158}
-  - component: {fileID: 8793482083652506740}
   - component: {fileID: 1930658654230285828}
   - component: {fileID: 2023129387941286839}
+  - component: {fileID: 4175772936826526465}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -56,22 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.75, y: 0.75, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8793482083652506740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6930867641854373729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b966b6103d0eeb4e81da955bd612ebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Creature
-  gridPosition: {x: 0, y: 0, z: 0}
-  turn: 0
-  rotation: 0
-  maxHp: 1
 --- !u!114 &1930658654230285828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +127,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &4175772936826526465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930867641854373729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3497ebbd0cf0a940acb4c6583c9cb26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Chest
+  gridPosition: {x: 0, y: 0, z: 0}
+  turn: 0
+  rotation: 0
+  canBeAttacked: 1
+  maxHp: 1
+  weaknesses: []
+  baseAttack:
+    value: 1
+    type: 0
+  audioSource: {fileID: 0}
+  translated: 1
+  message: 
+  spellIcon: {fileID: 0}
