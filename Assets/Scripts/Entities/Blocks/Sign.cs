@@ -8,8 +8,8 @@ using System.Collections.Generic;
 public class Sign : Entity
 {
     public bool translated = true;
-    public string message = "The sign's author forgot to write a message.";
-    public Sprite spellIcon = null;
+    public string message;
+    public Sprite spellIcon;
     public Action<string, Sprite> onRead;
 
     public void Start()
@@ -20,7 +20,6 @@ public class Sign : Entity
 
     public override void TakeDamage(Damage damage)
     {
-        GameManager.Instance.signMessageManager.gameObject.SetActive(true);
         onRead?.Invoke(message, spellIcon);
     }
 }

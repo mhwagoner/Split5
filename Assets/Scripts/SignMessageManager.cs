@@ -9,16 +9,29 @@ public class SignMessageManager : MonoBehaviour
 
     public void ReadSignUI(string message, Sprite spellIcon)
     {
-        signMessageText.text = message;
-        signMessageSpellIcon.sprite = spellIcon;
-        this.transform.Find("TextPanel").gameObject.SetActive(true);
-        this.transform.Find("SpellPanel").gameObject.SetActive(true);
+        if (message == "") {
+            signMessageText.text = "The sign's author forgot to write a message.";
+        } else {
+            signMessageText.text = message;
+        }
+
+        if (spellIcon == null) {
+            this.transform.Find("SpellPanel").gameObject.SetActive(false);
+        } else {
+            signMessageSpellIcon.sprite = spellIcon;
+            this.transform.Find("SpellPanel").gameObject.SetActive(true);
+        }
+        this.transform.gameObject.SetActive(true);
     }
 
-    void Start()
+    public void HideSignUI()
+    {
+        this.transform.gameObject.SetActive(false);
+    }
+
+    void Awake()
     {
         GameManager.Instance.signMessageManager = this;
-        this.transform.Find("TextPanel").gameObject.SetActive(false);
-        this.transform.Find("SpellPanel").gameObject.SetActive(false);
+        this.transform.gameObject.SetActive(false);
     }
 }

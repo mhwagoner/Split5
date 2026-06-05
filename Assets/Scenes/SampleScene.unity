@@ -4398,7 +4398,7 @@ GameObject:
   - component: {fileID: 138582270}
   - component: {fileID: 138582269}
   m_Layer: 5
-  m_Name: TextPanel
+  m_Name: MessagePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4420,9 +4420,9 @@ RectTransform:
   m_Father: {fileID: 972076803}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.4, y: 0.4}
-  m_AnchoredPosition: {x: -57.59999, y: 0}
-  m_SizeDelta: {x: 76.8, y: 108}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.099975586, y: 0}
+  m_SizeDelta: {x: 191.80002, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138582269
 MonoBehaviour:
@@ -5392,45 +5392,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: How to perform Shock spell.
+      objectReference: {fileID: 0}
     - target: {fileID: 2253443996615629506, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: m_Name
       value: Sign_Block
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: message
-      value: test
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: spellIcon
-      value: 
-      objectReference: {fileID: 21300000, guid: edeb4e902e061c448bfacac6c7768111, type: 3}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: readEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: readEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: readEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2121900029}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: readEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: readEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: readEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-      propertyPath: readEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 9118795639109073274, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5472,8 +5440,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5402590819185653736, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -29057,7 +29024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &972076803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29291,7 +29258,7 @@ GameObject:
   - component: {fileID: 983596973}
   - component: {fileID: 983596972}
   m_Layer: 5
-  m_Name: SignMessage
+  m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29369,7 +29336,7 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 1
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -40806,6 +40773,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366178897}
     m_Modifications:
+    - target: {fileID: 2074295064513345558, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
+      propertyPath: message
+      value: Move towards enemies to fight.
+      objectReference: {fileID: 0}
     - target: {fileID: 2253443996615629506, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
       propertyPath: m_Name
       value: Sign_Block
@@ -46456,10 +46427,10 @@ RectTransform:
   - {fileID: 1709491389}
   m_Father: {fileID: 972076803}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.6, y: 0}
-  m_AnchorMax: {x: 1, y: 0.4}
-  m_AnchoredPosition: {x: 57.599976, y: 0}
-  m_SizeDelta: {x: 76.80002, y: 108}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.099975586, y: 0}
+  m_SizeDelta: {x: 191.80002, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1559616111
 MonoBehaviour:
@@ -61686,11 +61657,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5383491076997340056, guid: 02af4b06fb11b9a40870ecefba051f11, type: 3}
   m_PrefabInstance: {fileID: 2118916832}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2121900029 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2253443996615629506, guid: 705290138e1c34e47bd23ef9bb62c870, type: 3}
-  m_PrefabInstance: {fileID: 160950237}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2126813372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62415,6 +62381,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Textlog
       objectReference: {fileID: 0}
+    - target: {fileID: 6039547146114724114, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
+      propertyPath: m_fontSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039547146114724114, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
+      propertyPath: m_margin.w
+      value: 0.12669373
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039547146114724114, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -62441,11 +62419,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 159.1
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 59.7
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -62477,11 +62455,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -79.54999
+      value: -95
       objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -29.84999
+      value: -42.5
       objectReference: {fileID: 0}
     - target: {fileID: 9048111738799031525, guid: 304a61b91fb145046bdda720c20ed03b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

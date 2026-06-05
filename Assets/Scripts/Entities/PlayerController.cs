@@ -14,6 +14,7 @@ public class PlayerController : Creature
     [SerializeField] private InputActionReference skipAction;
     public const float ROTATION_SPEED = 700f;
     private Spell queueSpell = null;
+    public Action onPlayerInput;
 
     private int queueRotation = 0;
 
@@ -34,6 +35,7 @@ public class PlayerController : Creature
         StartCoroutine(RunRotationQueue());
         GameManager.Instance.runeDraw.onSpellCast += QueueCast;
         onTakeDamage += GameManager.Instance.UpdateHealthUI;
+        onPlayerInput += GameManager.Instance.signMessageManager.HideSignUI;
     }
 
     private void Update()
@@ -82,12 +84,16 @@ public class PlayerController : Creature
         // DEBUG CHANGE SPACE TO SKIP TURN
         if(skipAction.ToInputAction().WasPressedThisFrame())
         {
+            onPlayerInput?.Invoke();
+            
             EndTurn();
             return;
         }
 
         if (queueRotation != 0)
         {
+            onPlayerInput?.Invoke();
+
             int turnInput = queueRotation;
             int newRotation = rotation + queueRotation;
             Rotate(ref newRotation);
@@ -97,6 +103,8 @@ public class PlayerController : Creature
         if (moveAction.ToInputAction().WasPressedThisFrame())
         {
             Vector2Int movement = Vector2Int.CeilToInt(moveAction.ToInputAction().ReadValue<Vector2>());
+
+            onPlayerInput?.Invoke();
 
             if (movement != Vector2Int.zero)
             {

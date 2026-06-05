@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3545758709388712172}
   - component: {fileID: 1229253850610754927}
   - component: {fileID: 6468821219389388428}
-  - component: {fileID: 5402590819185653736}
+  - component: {fileID: 2074295064513345558}
   m_Layer: 0
   m_Name: Sign_Block
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5402590819185653736
+--- !u!114 &2074295064513345558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +138,3 @@ MonoBehaviour:
   translated: 1
   message: 
   spellIcon: {fileID: 0}
-  readEvent:
-    m_PersistentCalls:
-      m_Calls: []
