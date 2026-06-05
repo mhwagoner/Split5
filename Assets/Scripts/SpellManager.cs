@@ -11,6 +11,18 @@ public class SpellManager : MonoBehaviour
     public GameObject icePrefab;
     public Material rainbowMaterial;
 
+    public float sfx_volume = 15.0f;
+    public AudioClip flameSFX;
+    public AudioClip shockSFX;
+    public AudioClip freezeSFX;
+    public AudioClip breezeSFX;
+    public AudioClip splashSFX;
+    public AudioClip shineSFX;
+    public AudioClip flipSFX;
+    public AudioClip rockSFX;
+    public AudioClip rainbowSFX;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -94,6 +106,12 @@ public class Flame : Spell
         });
         damage = new(Damage.Type.FIRE, 1);
     }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.flameSFX, GameManager.Instance.spellManager.sfx_volume);
+    }
 }
 
 public class Shock : Spell
@@ -109,6 +127,12 @@ public class Shock : Spell
             } );
         damage = new(Damage.Type.LIGHTNING, 1);
     }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.shockSFX, GameManager.Instance.spellManager.sfx_volume);
+    }
 }
 
 public class Splash : Spell
@@ -120,6 +144,12 @@ public class Splash : Spell
             });
         damage = new(Damage.Type.WATER, 1);
     }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.splashSFX, GameManager.Instance.spellManager.sfx_volume);
+    }
 }
 
 public class Freeze : Spell
@@ -130,6 +160,12 @@ public class Freeze : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, 1), } )
             });
         damage = new(Damage.Type.ICE, 1);
+    }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.freezeSFX, GameManager.Instance.spellManager.sfx_volume);
     }
 }
 
@@ -144,6 +180,12 @@ public class Breeze : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, 1), new RuneLine(-1, 1, 0, 1), new RuneLine(0, 1, 1, 1), new RuneLine(1, 1, 1, 0), new RuneLine(1, 0, 0, 0), new RuneLine(0, 0, -1, 0), } )
             });
         damage = new(Damage.Type.WIND, 1);
+    }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.breezeSFX, GameManager.Instance.spellManager.sfx_volume);
     }
 }
 
@@ -165,6 +207,12 @@ public class Shine : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, -1), new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 1, 0), } )
             });
     }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.shineSFX, GameManager.Instance.spellManager.sfx_volume);
+    }
 }
 public class Flip : Spell
 {
@@ -173,6 +221,12 @@ public class Flip : Spell
         runes = new List<Rune>(new Rune[] {
             new Rune( new RuneLine[] { new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 1, 0), new RuneLine(1, 0, 1, 1), new RuneLine(1, 1, 0, 1), new RuneLine(0, 1, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, 1), } )
             });
+    }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.flipSFX, GameManager.Instance.spellManager.sfx_volume);
     }
 }
 
@@ -184,6 +238,12 @@ public class Rock : Spell
             new Rune( new RuneLine[] { new RuneLine(-1, -1, 1, -1), new RuneLine(1, -1, 1, 1), new RuneLine(1, 1, -1, 1), new RuneLine(-1, 1, -1, -1), } )
             });
         damage = new(Damage.Type.ROCK, 1);
+    }
+
+    public override void Cast(Entity caster)
+    {
+        base.Cast(caster);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rockSFX, GameManager.Instance.spellManager.sfx_volume);
     }
 }
 
@@ -199,6 +259,8 @@ public class Rainbow : Spell
 
     public override void Cast(Entity caster)
     {
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rainbowSFX, GameManager.Instance.spellManager.sfx_volume);
+
         RaycastHit hit;
         if (TryCastForward(caster, out hit))
         { // HIT

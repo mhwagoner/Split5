@@ -45,4 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellManager
   spells: []
+  icePrefab: {fileID: 0}
   rainbowMaterial: {fileID: 2100000, guid: 67cf3aa9c03d11247a34d7289d208dc3, type: 2}
+  sfx_volume: 15
+  flameSFX: {fileID: 8300000, guid: a0389d9c475557442aa91d8d2ed8b447, type: 3}
+  shockSFX: {fileID: 8300000, guid: 452cfbaa83aa36042aee3c22944153af, type: 3}
+  freezeSFX: {fileID: 8300000, guid: b9adf6e944bfdcf408ea25162edcfa21, type: 3}
+  breezeSFX: {fileID: 8300000, guid: 484c3eb6bcf32ed47a44f55df6d498d0, type: 3}
+  splashSFX: {fileID: 8300000, guid: e44fe30f24de2e940af33e40a3dd54bd, type: 3}
+  shineSFX: {fileID: 8300000, guid: 3383c172539a61a4a85aaa3208a6ac5f, type: 3}
+  flipSFX: {fileID: 8300000, guid: f245a7d965c516949a2091dd1216279a, type: 3}
+  rockSFX: {fileID: 8300000, guid: ac49fcea6eaec7a449f593e414877b5b, type: 3}
+  rainbowSFX: {fileID: 8300000, guid: 39d1294e13e78034b9e14844cd4c0c84, type: 3}
