@@ -36,11 +36,11 @@ public class SettingsManager : MonoBehaviour
 
     public void LongerTimer()
     {
-        //GameManager.Instance.gameTimer = 60.0f;
+        GameManager.timerDuration = 60.0f;
     }
 
     public void ShorterTimer()
     {
-        //GameManager.Instance.gameTimer = 30.0f;
+        GameManager.timerDuration = 30.0f;
     }
 }

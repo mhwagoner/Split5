@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,7 +41,9 @@ public class SpellManager : MonoBehaviour
             new Rock(),
             new Rainbow(),
             new SecretYume(),
-            new SecretLodge()
+            new SecretLodge(),
+            new Heal(),
+            new Teleport()
         });
         GameManager.Instance.spellManager = this;
     }
@@ -191,7 +194,7 @@ public class Breeze : Spell
     public override void Cast(Entity caster)
     {
         base.Cast(caster);
-        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.breezeSFX, GameManager.Instance.spellManager.sfx_volume - 5.0f);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.breezeSFX, GameManager.Instance.spellManager.sfx_volume - 2.0f);
     }
 }
 
@@ -286,7 +289,7 @@ public class Rock : Spell
     public override void Cast(Entity caster)
     {
         base.Cast(caster);
-        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rockSFX, GameManager.Instance.spellManager.sfx_volume);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rockSFX, GameManager.Instance.spellManager.sfx_volume - 2.0f);
     }
 }
 
@@ -356,6 +359,41 @@ public class SecretLodge : Spell
 
     public override void Cast(Entity caster)
     {
-        SceneManager.LoadScene("Lodge");
+        GameManager.Instance.player.StartCoroutine(GameManager.Instance.GoToSceneDelay(0.0f, "Lodge"));
+    }
+}
+
+public class Heal : Spell
+{
+    public Heal()
+    {
+        runes = new List<Rune>(new Rune[] {
+            new Rune( new RuneLine[] { new RuneLine(-1, 0, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, 1, 1), new RuneLine(1, 1, 1, 0), new RuneLine(1, 0, 1, -1), new RuneLine(1, -1, 0, -1), new RuneLine(0, -1, -1, -1), new RuneLine(-1, -1, -1, 0), } ),
+            new Rune( new RuneLine[] { new RuneLine(-1, 1, -1, 0), new RuneLine(-1, 0, -1, -1), new RuneLine(-1, -1, 0, -1), new RuneLine(0, -1, 1, -1), new RuneLine(1, -1, 1, 0), new RuneLine(1, 0, 1, 1), new RuneLine(1, 1, 0, 0), new RuneLine(0, 0, -1, 1), new RuneLine(-1, 1, 0, 0), new RuneLine(0, 0, -1, -1), new RuneLine(-1, -1, 0, 0), new RuneLine(0, 0, 1, -1), } )
+            });
+        name = "Heal";
+    }
+
+    public override void Cast(Entity caster)
+    {
+        caster.hp = Math.Max(caster.hp + 3, caster.maxHp);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rainbowSFX, GameManager.Instance.spellManager.sfx_volume);
+    }
+}
+
+public class Teleport : Spell
+{
+    public Teleport()
+    {
+        runes = new List<Rune>(new Rune[] {
+            new Rune( new RuneLine[] { new RuneLine(-1, 1, 1, 1), new RuneLine(1, 1, 1, 0), new RuneLine(1, 0, 0, 0), new RuneLine(0, 0, -1, 0), new RuneLine(-1, 0, -1, -1), new RuneLine(-1, -1, 1, -1), } )
+            });
+        name = "Teleport";
+    }
+
+    public override void Cast(Entity caster)
+    {
+        caster.Move(new Vector3Int(23, 1, 14), true, true);
+        caster.audioSource.PlayOneShot(GameManager.Instance.spellManager.rainbowSFX, GameManager.Instance.spellManager.sfx_volume);
     }
 }

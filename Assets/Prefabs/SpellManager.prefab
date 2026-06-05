@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellManager
   spells: []
-  icePrefab: {fileID: 0}
+  icePrefab: {fileID: 2387627011140398861, guid: 7c31f56b9ecd3e943a615f396cb30746, type: 3}
   rainbowMaterial: {fileID: 2100000, guid: 67cf3aa9c03d11247a34d7289d208dc3, type: 2}
-  sfx_volume: 15
+  sfx_volume: 5
   flameSFX: {fileID: 8300000, guid: a0389d9c475557442aa91d8d2ed8b447, type: 3}
   shockSFX: {fileID: 8300000, guid: 452cfbaa83aa36042aee3c22944153af, type: 3}
   freezeSFX: {fileID: 8300000, guid: b9adf6e944bfdcf408ea25162edcfa21, type: 3}

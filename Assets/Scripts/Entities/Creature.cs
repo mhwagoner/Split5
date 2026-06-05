@@ -18,6 +18,7 @@ public class Creature : Entity
         {
             GameManager.Instance.enemies.Add(this);
             MOVE_SPEED = 3.5f;
+            BUMP_SPEED = MOVE_SPEED;
         }
     }
 
@@ -39,7 +40,7 @@ public class Creature : Entity
             {
                 if (canAct)
                 {
-                    Attack();
+                    AttackPlayer();
                 }
             }
         }
@@ -52,10 +53,11 @@ public class Creature : Entity
         EndTurn();
     }
 
-    public virtual void Attack()
+    public virtual void AttackPlayer()
     {
         GameManager.Instance.UpdateTextlog(name + " strikes at you!");
-        Move(GameManager.Instance.player.gridPosition);
+        Attack(baseAttack, GameManager.Instance.player);
+        movementQueue.Enqueue(new Movement(GameManager.Instance.player.gridPosition, true));
     }
 
     public override void OnDeath()

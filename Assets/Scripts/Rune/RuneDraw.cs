@@ -160,18 +160,18 @@ public class RuneDraw : MonoBehaviour
             if (currentLine.point_a + point.pointPosition == Vector2Int.zero)
             {
                 currentLine.point_b = Vector2Int.zero;
-                DrawLine(currentPoint.transform.position, runePoints[0].transform.position, Color.black);
+                DrawLine(currentPoint.transform.position, runePoints[0].transform.position, Color.white);
                 currentLines.Add(currentLine);
                 currentLine = new();
                 currentLine.point_a = Vector2Int.zero;
                 currentLine.point_b = point.pointPosition;
-                DrawLine(runePoints[0].transform.position, point.transform.position, Color.black);
+                DrawLine(runePoints[0].transform.position, point.transform.position, Color.white);
             }
             else
             {
                 // Use current line
                 currentLine.point_b = point.pointPosition;
-                DrawLine(currentPoint.transform.position, point.transform.position, Color.black);
+                DrawLine(currentPoint.transform.position, point.transform.position, Color.white);
             }
             currentLines.Add(currentLine);
             currentLine = new();
@@ -360,7 +360,7 @@ public class RuneDraw : MonoBehaviour
     private void DrawBrush(Texture2D texture, Vector2Int center)
     {
         Color[] colorArray = new Color[16];
-        Array.Fill(colorArray, Color.gray1);
+        Array.Fill(colorArray, Color.black);
         texture.SetPixels(center.x, center.y, BRUSH_SIZE / 2, BRUSH_SIZE, colorArray);
         texture.SetPixels(center.x, center.y, BRUSH_SIZE, BRUSH_SIZE / 2, colorArray);
     }

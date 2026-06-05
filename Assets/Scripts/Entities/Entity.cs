@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour
     protected Vector3 positionOffset; // offset from grid position for visuals
     [SerializeField] protected bool canBeAttacked = true;
     [SerializeField] public int maxHp = 1;
-    public int hp { get; protected set; }
+    public int hp { get; set; }
     [SerializeField] protected List<Damage> weaknesses = new();
     [SerializeField] protected Damage baseAttack = new(Damage.Type.PHYSICAL, 1);
 
@@ -20,6 +20,8 @@ public class Entity : MonoBehaviour
     protected Queue<int> rotationQueue;
     protected Queue<Movement> movementQueue;
     protected float MOVE_SPEED = 10.0f;
+    protected float BUMP_SPEED = 10.0f;
+    protected float bumpDistance = 0.75f;
 
     public AudioSource audioSource;
 
@@ -51,7 +53,7 @@ public class Entity : MonoBehaviour
         if (!teleport)
         {
             RaycastHit hit;
-            if (Physics.Raycast(gridPosition + new Vector3(0.5f, 0.0f, 0.5f), newPosition - gridPosition, out hit, 0.5f))
+            if (Physics.Raycast(gridPosition + new Vector3(0.5f, 0.0f, 0.5f), newPosition - gridPosition, out hit, 1f))
             {
                 if (hit.transform.TryGetComponent<Entity>(out Entity entity))
                 {
@@ -220,16 +222,16 @@ public class Entity : MonoBehaviour
         {
             Vector3 startpos = transform.position;
             // first loop
-            while (Vector3.Distance(transform.position - positionOffset, movement.position) > 0.75f)
+            while (Vector3.Distance(transform.position - positionOffset, movement.position) > bumpDistance)
             {
-                transform.position = Vector3.MoveTowards(transform.position, movement.position + positionOffset, Time.deltaTime * MOVE_SPEED);
+                transform.position = Vector3.MoveTowards(transform.position, movement.position + positionOffset, Time.deltaTime * BUMP_SPEED);
                 yield return new WaitForEndOfFrame();
             }
 
             // move back from bump
             while (transform.position != startpos)
             {
-                transform.position = Vector3.MoveTowards(transform.position, startpos, Time.deltaTime * MOVE_SPEED);
+                transform.position = Vector3.MoveTowards(transform.position, startpos, Time.deltaTime * BUMP_SPEED);
                 yield return new WaitForEndOfFrame();
             }
         }

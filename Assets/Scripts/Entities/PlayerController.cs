@@ -29,6 +29,9 @@ public class PlayerController : Creature
     [SerializeField] public AudioClip hitSFX;
     [SerializeField] public AudioClip fallSFX;
     [SerializeField] public AudioClip gongSFX;
+    [SerializeField] public AudioClip hurtSFX;
+
+    public Queue<AudioClip> hitSoundQueue = new();
 
     private void Start()
     {
@@ -36,9 +39,13 @@ public class PlayerController : Creature
 
         GameManager.Instance.player = this;
         StartCoroutine(RunRotationQueue());
+        StartCoroutine(RunHitSoundQueue());
         GameManager.Instance.runeDraw.onSpellCast += QueueCast;
         onTakeDamage += GameManager.Instance.UpdateHealthUI;
-        onPlayerInput += GameManager.Instance.signMessageManager.HideSignUI;
+        if (GameManager.Instance.signMessageManager != null)
+        {
+            onPlayerInput += GameManager.Instance.signMessageManager.HideSignUI;
+        }
     }
 
     private void Update()
@@ -174,6 +181,25 @@ public class PlayerController : Creature
         }
     }
 
+    public IEnumerator RunHitSoundQueue()
+    {
+        while (true)
+        {
+            if (hitSoundQueue.Count > 0)
+            {
+                if (hitSoundQueue.Dequeue() == hurtSFX)
+                {
+                    audioSource.PlayOneShot(hurtSFX, 2);
+                }
+                else
+                {
+                    audioSource.PlayOneShot(hitSFX);
+                }
+            }
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+    }
+
     public override void EndTurn()
     {
         base.EndTurn();
@@ -201,10 +227,16 @@ public class PlayerController : Creature
         }
     }
 
+    public override void TakeDamage(Damage damage)
+    {
+        base.TakeDamage(damage);
+        hitSoundQueue.Enqueue(hurtSFX);
+    }
+
     public override void Attack(Damage damage, Entity target)
     {
         base.Attack(damage, target);
-        audioSource.PlayOneShot(hitSFX);
+        hitSoundQueue.Enqueue(hitSFX);
     }
 }
 

@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5287c6fe379135c4ba95097ae5aeebe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeToGray
-  spriteMaterial: {fileID: 2100000, guid: c61bf3f688f220e47a93c0577f89b407, type: 2}
 --- !u!1 &3283733960732445054
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,10 +257,20 @@ MonoBehaviour:
     value: 1
     type: 0
   audioSource: {fileID: 0}
+  canAct: 1
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   turnAction: {fileID: 5738165364234612898, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   skipAction: {fileID: 6020673069806943349, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   clockTick: {fileID: 8300000, guid: ce6bb70ba5509374e88d879838fb4624, type: 3}
+  clockTickFast: {fileID: 8300000, guid: 9608173c9488a2b4fb8fde1ce1cd8ded, type: 3}
+  stepSFX1: {fileID: 8300000, guid: b540b31890c7a9c47b028796901defcd, type: 3}
+  stepSFX2: {fileID: 8300000, guid: 20eda2686497c034cb13f82d2685ad21, type: 3}
+  stepSFX3: {fileID: 8300000, guid: 1e745303d9312914d9adba2db0f849c4, type: 3}
+  stepSFX4: {fileID: 8300000, guid: 4bd903ab67366c54fbc1e5ad4683fbe8, type: 3}
+  hitSFX: {fileID: 8300000, guid: 59e64cd5cb329ee4a8cc8dd9a5af4d33, type: 3}
+  fallSFX: {fileID: 8300000, guid: 36bff473211ab0d48a10ef5c64470c59, type: 3}
+  gongSFX: {fileID: 8300000, guid: e1ed499e572017646a1e7a809f563320, type: 3}
+  hurtSFX: {fileID: 8300000, guid: f65b81ff8c538134d8a4d0ebbcbee435, type: 3}
 --- !u!65 &4333633179805600134
 BoxCollider:
   m_ObjectHideFlags: 0

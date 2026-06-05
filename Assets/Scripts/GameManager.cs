@@ -37,6 +37,8 @@ public class GameManager
     public string textlog = "You awaken in the dungeon.";
 	public TextMeshProUGUI textlogMesh;
 	public HealthUI[] healthImages = new HealthUI[3];
+	public Action onLose;
+	public static float timerDuration = 30.0f;
 
     public static GameManager theInstance { get; private set; }
     public static GameManager Instance
@@ -89,6 +91,7 @@ public class GameManager
 		gameRunner.StopAllCoroutines();
         TimeExpire();
         player.audioSource.Stop();
+		player.audioSource.PlayOneShot(player.fallSFX);
         OnLose();
 
     }
@@ -103,6 +106,7 @@ public class GameManager
 	public void OnLose()
 	{
 		gameLost = true;
+		onLose?.Invoke();
 	}
 
 	public void InitiatePositions()
@@ -117,7 +121,7 @@ public class GameManager
 
 	public IEnumerator Timer()
 	{
-		yield return new WaitForSeconds(25.0f);
+		yield return new WaitForSeconds(timerDuration - 5.0f);
 		// play ticking sound (like the chrono trigger title screen)
 		player.audioSource.PlayOneShot(player.clockTick);
         yield return new WaitForSeconds(1.0f);
