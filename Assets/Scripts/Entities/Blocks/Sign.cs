@@ -20,6 +20,10 @@ public class Sign : Entity
 
     public override void TakeDamage(Damage damage)
     {
-        onRead?.Invoke(message, spellIcon);
+        if (translated) {
+            onRead?.Invoke(message, spellIcon);
+        } else {
+            onRead?.Invoke("You cannot make out the words.", null);
+        }
     }
 }
