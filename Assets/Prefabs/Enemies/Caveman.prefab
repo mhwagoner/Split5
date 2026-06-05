@@ -73,7 +73,7 @@ MonoBehaviour:
   turn: 0
   rotation: 0
   canBeAttacked: 1
-  maxHp: 6
+  maxHp: 4
   weaknesses:
   - value: 2
     type: 1
