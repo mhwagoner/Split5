@@ -29024,18 +29024,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4127811633374885931, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
-      propertyPath: m_Volume
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4127811633374885931, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5827942310611879857, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
-      propertyPath: skipAction
-      value: 
-      objectReference: {fileID: 6020673069806943349, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 8719754694795434114, guid: 12e60bd26f655f14eb6a5db84ef606d3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -60616,42 +60604,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: flipSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: f245a7d965c516949a2091dd1216279a, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: rockSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: ac49fcea6eaec7a449f593e414877b5b, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: flameSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: a0389d9c475557442aa91d8d2ed8b447, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: shineSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 3383c172539a61a4a85aaa3208a6ac5f, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: shockSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 452cfbaa83aa36042aee3c22944153af, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: breezeSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 484c3eb6bcf32ed47a44f55df6d498d0, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: freezeSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: b9adf6e944bfdcf408ea25162edcfa21, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: splashSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: e44fe30f24de2e940af33e40a3dd54bd, type: 3}
-    - target: {fileID: 7812776545798541537, guid: 0e0da3d32bcaf2f4bac91211376a9434, type: 3}
-      propertyPath: rainbowSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 39d1294e13e78034b9e14844cd4c0c84, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
